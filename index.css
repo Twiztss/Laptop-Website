@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.to-do-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.to-do-box {
+    text-align: start;
+}
+
