@@ -85,6 +85,11 @@
     text-align: center;
 }
 
+.hero-banner {
+    width: 50%;
+    border: 1px solid black;
+}
+
 /* To-Do-List section */
 
 .to-do-box {
@@ -146,15 +151,59 @@
     /* border: 1px solid black; */
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 65%;
+    height: 450px;
+    gap: 5%;
 }
 
 .product-card {
     align-items: center;
     border: 2px solid black;
     display: flex;
-    height: 100px;
-    justify-content: center;
+    height: 200px;
+    justify-content: space-between;
     width: 100px;
+    flex-flow: column wrap;
+}
+
+.product-img {
+    border : 1px solid black;
+    width: 100%;
+    height: 50%;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid black;
+    width: 100%;
+    height: auto;
+    padding : 5%;
+    gap: 5%;
+    flex-direction: column;
+}
+
+.about-us {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-service, .contact-us, .about-us {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+}
+
+.credit-list {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
