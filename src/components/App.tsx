@@ -1,11 +1,13 @@
+import Footer from "./Footer";
 import Header from "./Header";
 import Hero from "./Hero";
 
 export default function App() {
   return (
-    <div className="flex flex-col w-full h-screen">
+    <main className="flex flex-col justify-between w-full h-screen">
       <Header />
       <Hero />
-    </div>
+      <Footer />
+    </main>
   )
 }
