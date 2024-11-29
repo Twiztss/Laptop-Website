@@ -20,6 +20,24 @@ const data : object[] = [
     description : "Description 3",
     url : "",
   },
+  {
+    id : 3,
+    name : "Feature 4",
+    description : "Description 4",
+    url : "",
+  },
+  {
+    id : 4,
+    name : "Feature 5",
+    description : "Description 5",
+    url : "",
+  },
+  {
+    id : 5,
+    name : "Feature 6",
+    description : "Description 6",
+    url : "",
+  },
 ]
 
 type featureProps = {
@@ -29,46 +47,26 @@ type featureProps = {
   url : string,
 }
 
-const FeatureHero = ({ data } : any) => {
-
-  const renderFeature = (feature : featureProps) => {
-    return (
-      <section className="flex justify-between m-10 h-5/6 w-3/4" key = {feature.id}>
-        <div className="">
-          <h2 className="text-2xl font-bold">{feature.name}</h2>
-          <p className="text-gray-500 font-medium">{feature.description}</p>
-        </div>
-        <img src={feature.url? feature.url : ""} alt="" className="border-white border-2 border-solid w-24" />
-      </section>
-    )
-  }
-
-  return (
-    <div className="flex flex-col gap-10 items-center">
-      {data.map(renderFeature)}
-    </div>
-  )
-}
-
 const FeatureCard = ({ data } : any) => {
   
   const renderCard = (feature : featureProps) => {
     return (
-      <div className="bg-gray-300 flex flex-col gap-4 px-6 py-4 rounded-lg items-center text-center" key = {feature.id}>
+      <div className="bg-white flex flex-col px-8 py-12 rounded-md drop-shadow-lg w-1/4 gap-2" key = {feature.id}>
+        <div className="border-gray-200 border-2 w-[50px] aspect-square rounded-full"></div>
         <img src={feature.url? feature.url : ""} alt="" />
-        <div>
-          <h1>{feature.name}</h1>
-          <p>{feature.description}</p>
+        <div className="">
+          <h1 className = "text-lg font-bold">{feature.name}</h1>
+          <p className="text-gray-500 text-sm font-medium">{feature.description}</p>
+          <button className="">Next</button>
         </div>
-        <button className="bg-gray-500 text-white font-semibold px-6 py-2 rounded-full">Learn more</button>
       </div>
     )
-  }
+  } 
 
   return (
-    <div className="flex flex-col gap-10 self-center items-center">
+    <div className="flex flex-col m-10 gap-10 self-center items-center w-full">
       <h2 className="font-bold text-2xl">Why this product?</h2>
-      <div className="flex gap-10">
+      <div className="flex px-8 py-4 gap-10 w-full justify-center flex-wrap"> 
         {data.map(renderCard)}
       </div>
     </div>
@@ -79,13 +77,22 @@ export default function Feature() {
   return (
     <main className="flex flex-col w-full h-screen justify-between">
       <Header />
-        <section className="flex flex-col px-10 py-4">    
-          <h1 className="text-4xl font-bold text-center">Features</h1>
-          <p className="text-center">Description</p>
-          <FeatureHero data = {data}/>
-          <FeatureCard data = {data}/>
-          <Footer />
+        <section className="flex flex-col px-10 py-4 bg-slate-200">
+          <div className="flex flex-col gap-6 my-10 items-center">
+            <h1 className="text-center text-6xl font-bold">Features</h1>
+            <p className="text-center font-base text-gray-500 text-md w-5/12">Feature description describing how good the product actually is within few sentences captivating potential customers  .</p>
+            <div className="flex gap-4">
+              <button className="bg-gray-700 text-white px-8 py-3 rounded-full">Register</button>
+              <button className="border-gray-700 border-solid border-2 py-3 px-8 rounded-full">Explore</button>
+            </div>
+          </div>  
         </section>
+        <FeatureCard data = {data}/>
+        {/* <FeatureHero data = {data}/>   */}
+        <section className="flex flex-col px-10 py-4 items-center">
+          <h1 className="text-3xl font-bold">Sponsored by</h1>
+        </section>
+        <Footer />
     </main>
   )
 }
