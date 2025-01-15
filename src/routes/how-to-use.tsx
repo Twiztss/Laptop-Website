@@ -28,11 +28,10 @@ export default function HowToUse() {
 
   const renderInstruction = (data : any) => {
     return (
-      <div className="flex flex-col gap-4 w-full" key = {data.step}>
-          <div className="bg-red-400 rounded-full w-10 h-10 text-white flex items-center justify-center font-bold">{data.id + 1}</div>
+      <div className="flex flex-col gap-6 w-full" key = {data.step}>
+          <div className="bg-gray-400 rounded-full w-10 h-10 text-white flex items-center justify-center font-bold">{data.id + 1}</div>
           <h1 className="text-3xl font-bold">{data.step}</h1>
-          <p className="font-semibold text-gray-300">{data.stepInfo}</p>
-          <div className="w-1/2 border-gray-400 border-2 rounded-lg"></div>
+          <p className="font-normal text-lg text-gray-300">{data.stepInfo}</p>
       </div>
     )
   }
@@ -43,7 +42,6 @@ export default function HowToUse() {
       <section className="flex flex-col gap-10 mx-16 my-10 h-5/6 w-1/2">
         <h1 className="text-4xl font-bold self-center">How to use?</h1>
         <p className="text-gray-400 font-semibold self-center"></p>
-        <h3 className="font-bold text-lg">Steps</h3>
         {data.map(renderInstruction)}
       </section>
       <Footer />
