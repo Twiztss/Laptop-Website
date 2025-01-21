@@ -2,6 +2,7 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FilterIcon, Plus, XIcon } from "lucide-react"
+import Sidebar from "../components/Sidebar";
 
 type tagData = {  
   id : number,
@@ -87,9 +88,9 @@ export default function Products() {
 
   const prodRender = (prod : prodData) => {
     return (
-      <div className="flex flex-col w-1/6 gap-4 rounded-lg shadow-md justify-between">
-        <div className="self-center w-full bg-gray-100 aspect-square rounded-t-lg"></div>
-        <div className="flex-col px-4 py-2 g-6">
+      <div className="flex flex-col w-1/5 gap-4 rounded-lg shadow-md justify-between aspect-square">
+        <div className="self-center w-full h-2/3 bg-gray-100 rounded-t-lg"></div>
+        <div className="flex-col px-6 py-4 g-6">
           <h1 className="font-bold text-xl tracking-wider">{prod.name}</h1>
           <p className="text-gray-400 text-sm font-medium mb-2">{prod.description.length >= 20 ? prod.description.slice(0,20) + ". . ." : prod.description}</p>
           <big className="text-xl text-slate-500 font-semibold">{prod.price} USD</big>
@@ -129,7 +130,7 @@ export default function Products() {
   }
 
   return (
-    <main className="flex flex-col w-full h-screen justify-between gap-8">
+    <body className="flex flex-col w-full h-screen justify-between">
       <Header />
       <div className={`${isFilter ? "flex-col" : "hidden"} absolute bg-black w-full h-full justify-self-center self-center opacity-20`}></div>
       <nav className={`${isFilter ? "flex flex-col" : "hidden"}  gap-6 absolute mt-[12.5%] bg-gray-100 w-1/3 justify-self-center rounded-lg self-center p-10`}>
@@ -138,29 +139,32 @@ export default function Products() {
           <XIcon onClick={() => setIsFilter(false)} className="cursor-pointer" width={64} />
         </div>
         <input type="text" className="w-1/2 shadow-md px-4 py-1 text-gray-300 text-sm font-normal rounded-full" onChange={(e) => setFilterInput(e.target.value)} value={filterInput ? filterInput : "Category"} />
-        <div className="flex space-x-4">{data.map(selectedRender)}</div>
+        <div className="flex flex-wrap gap-4">{data.map(selectedRender)}</div>
         <div className="flex flex-col gap-2">
           {data.map(categoryRender)}
         </div>
       </nav>
-      <nav className="flex border-2 border-gray-100 w-full px-10 py-5 items-center justify-center -mt-8">
+      <nav className="flex border-2 border-gray-100 w-full px-10 py-5 items-center justify-center">
         <div className="flex w-1/2 justify-around">
           {data.map(tagRender)}
         </div>
       </nav>
-      <section className="flex flex-col gap-6 mx-10 h-5/6">
-        <nav className="flex justify-between">
-          <h1 className="text-3xl font-bold">Products</h1>
-          <div className="flex gap-2 cursor-pointer" onClick={() => setIsFilter(!isFilter)}>
-            <FilterIcon width={32}/>
-            <h3 className="text-md font-semibold">Filter by</h3>
+      <main className="flex w-full h-full">
+        <Sidebar />
+        <section className="flex flex-col gap-6 m-10 w-4/5 overflow-scroll">
+          <nav className="flex justify-between">
+            <h1 className="text-3xl font-bold">Products</h1>
+            <div className="flex gap-2 cursor-pointer" onClick={() => setIsFilter(!isFilter)}>
+              <FilterIcon width={32}/>
+              <h3 className="text-md font-semibold">Filter by</h3>
+            </div>
+          </nav>
+          <div className="flex gap-6">
+            {data_prod.map(prodRender)}
           </div>
-        </nav>
-        <div className="flex gap-6">
-          {data_prod.map(prodRender)}
-        </div>
-      </section>
+          </section>
+      </main>
       <Footer />
-    </main>
+    </body>
   )
 } 
