@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { FilterIcon, Plus, XIcon } from "lucide-react"
 import Sidebar from "../components/Sidebar";
+import { Link } from "react-router-dom";
 
 type tagData = {  
   id : number,
@@ -91,7 +92,9 @@ export default function Products() {
       <div className="flex flex-col w-1/5 gap-4 rounded-lg shadow-md justify-between aspect-square">
         <div className="self-center w-full h-2/3 bg-gray-100 rounded-t-lg"></div>
         <div className="flex-col px-6 py-4 g-6">
-          <h1 className="font-bold text-xl tracking-wider">{prod.name}</h1>
+          <h1 className="font-bold text-xl tracking-wider cursor-pointer">
+            <Link to={`/product/${prod.id + 1}`}>{prod.name}</Link>
+          </h1>
           <p className="text-gray-400 text-sm font-medium mb-2">{prod.description.length >= 20 ? prod.description.slice(0,20) + ". . ." : prod.description}</p>
           <big className="text-xl text-slate-500 font-semibold">{prod.price} USD</big>
         </div>
@@ -151,7 +154,7 @@ export default function Products() {
       </nav>
       <main className="flex w-full h-full">
         <Sidebar />
-        <section className="flex flex-col gap-6 m-10 w-4/5 overflow-scroll">
+        <section className="flex flex-col gap-6 m-10 w-4/5 overflow-y-scroll">
           <nav className="flex justify-between">
             <h1 className="text-3xl font-bold">Products</h1>
             <div className="flex gap-2 cursor-pointer" onClick={() => setIsFilter(!isFilter)}>

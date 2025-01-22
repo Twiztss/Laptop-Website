@@ -8,6 +8,7 @@ import './main.css'
 import HowToUse from './routes/how-to-use'
 import Products from './routes/products'
 import AboutUs from './routes/about-us'
+import ProductDetail from './routes/product-detail'
 
 const router = createBrowserRouter([
   {
@@ -16,20 +17,24 @@ const router = createBrowserRouter([
     errorElement : <ErrorPage />
   },
   {
-    path : "/features",
+    path : "features",
     element : <Feature />
   },
   {
-    path : "/products",
-    element : <Products />
+    path : "products",
+    element : <Products />,
   },
   {
-    path : "/how-to-use",
+    path : "how-to-use",
     element : <HowToUse />
   },
   {
-    path : "/about-us",
+    path : "about-us",
     element : <AboutUs />
+  },
+  {
+    path : "product/:productId",
+    element : <ProductDetail />
   },
 ])
 
