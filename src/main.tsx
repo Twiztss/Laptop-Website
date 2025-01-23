@@ -9,6 +9,8 @@ import HowToUse from './routes/how-to-use'
 import Products from './routes/products'
 import AboutUs from './routes/about-us'
 import ProductDetail from './routes/product-detail'
+import Cart from './routes/cart'
+import Favorite from './routes/favorite'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
   {
     path : "product/:productId",
     element : <ProductDetail />
+  },
+  {
+    path : "cart",
+    element : <Cart />
+  },
+  {
+    path : "favorite",
+    element : <Favorite />
   },
 ])
 

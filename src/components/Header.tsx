@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Laptop2Icon } from "lucide-react"
+import { Heart, Laptop2Icon, ShoppingCart } from "lucide-react"
 
 export default function Header() {
   return (
@@ -13,7 +13,10 @@ export default function Header() {
         </div>
         {/* <img src="" alt="" className="rounded-xl aspect-square w-[48px] absolute ml-[46.25%] border-black border-solid border-2"></img> */}
         <Laptop2Icon width={48} height={48} className="absolute ml-[46.25%]"/>
-        <button className="border-gray-300 font-bold rounded-full border-solid border-2 py-2 px-6 text-sm">Get Started</button>
+        <div className="flex gap-6">
+          <Link to={"/favorite"}><Heart width={24} height={24}/></Link>
+          <Link to={"/cart"}><ShoppingCart width={24} height={24}/></Link>
+        </div>
     </header>
   )
 }

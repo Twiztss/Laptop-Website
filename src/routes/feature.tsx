@@ -92,22 +92,22 @@ const Sponsor = () => {
 
 export default function Feature() {
   return (
-    <main className="flex flex-col w-full h-screen justify-between">
+    <body className="flex flex-col w-full h-screen justify-between">
       <Header />
-        <section className="flex flex-col px-10 py-4 bg-gray-50">
-          <div className="flex flex-col gap-6 my-10 items-center">
-            <h1 className="text-center text-6xl font-bold">Features</h1>
-            <p className="text-center font-normal text-gray-400 text-lg w-5/12">Feature description describing how good the product actually is within few sentences captivating potential customers  .</p>
-            <div className="flex gap-4">
-              <button className="bg-gray-700 text-white px-8 py-3 rounded-full font-medium">Register</button>
-              <button className="border-gray-700 border-solid border-2 r py-3 px-8 rounded-full font-medium">Explore</button>
-            </div>
-          </div>  
-        </section>
-        <FeatureCard data = {data}/>
-        <Sponsor />
+      <section className="flex flex-col px-8 py-16 bg-gray-100 h-5/6">
+        <div className="flex flex-col gap-6 my-10 items-center h-3/4">
+          <h1 className="text-center text-6xl font-bold tracking-wider">Features</h1>
+          <p className="text-center font-normal text-gray-700 text-lg w-5/12">Feature description describing how good the product actually is within few sentences captivating potential customers  .</p>
+          <div className="flex gap-4">
+            <button className="bg-gray-700 text-white px-8 py-3 rounded-full font-medium">Register</button>
+            <button className="border-gray-700 border-solid border-2 r py-3 px-8 rounded-full font-medium">Explore</button>
+          </div>
+        </div>  
+      </section>
+      <FeatureCard data = {data}/>
+      <Sponsor />
 
-        <Footer />
-    </main>
+      <Footer />
+    </body>
   )
 }
