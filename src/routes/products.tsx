@@ -4,96 +4,23 @@ import Header from "../components/Header";
 import { FilterIcon, Plus, XIcon } from "lucide-react"
 import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
-
-type tagData = {  
-  id : number,
-  name : string,
-  url : string,
-  amount : number,
-}
-
-type prodData = {
-  id : number,
-  tag : string,
-  description : string,
-  name : string,
-  price : number,
-  qt : number,
-}
-
-const data : tagData[] = [
-  {
-    id : 0,
-    name : "Laptops",
-    url : "",
-    amount : 45    
-  },
-  {
-    id : 1,
-    name : "Display",
-    url : "",
-    amount : 37,    
-  },
-  {
-    id : 2,
-    name : "Components",
-    url : "",
-    amount : 12,    
-  },
-  {
-    id : 3,
-    name : "Gadgets",
-    url : "",
-    amount : 23,    
-  },
-  {
-    id : 4,
-    name : "Misc",
-    url : "",
-    amount : 20,    
-  },
-]
-
-const data_prod = [
-  {
-    id : 0,
-    name : "Pizza",
-    tag : "Whatever",
-    description : "Proident proident duis quis consectetur in.",
-    price : 100,
-    qt : 20,
-  },
-  {
-    id : 1,
-    name : "Pizza",
-    tag : "Whatever",
-    description : "Cillum sunt laboris occaecat laboris.",
-    price : 100,
-    qt : 20,
-  },
-  {
-    id : 2,
-    name : "Pizza",
-    tag : "Whatever",
-    description : "Laboris commodo fugiat aute irure exercitation est eiusmod ea duis eu non est cupidatat esse.",
-    price : 100,
-    qt : 20,
-  },
-]
-
+import sampleCategory from "../data/category-data";
+import sampleProduct from "../data/product-data";
+import { Product } from "../types/Product";
+import { Category } from "../types/Catogory";
 
 export default function Products() {
   const [isFilter, setIsFilter] = useState(false)
   const [filterInput, setFilterInput] = useState("")
   const [selected, setSelected] = useState(true)
 
-  const prodRender = (prod : prodData) => {
+  const prodRender = (prod : Product) => {
     return (
       <div className="flex flex-col w-1/5 gap-4 rounded-lg shadow-md justify-between aspect-square">
         <div className="self-center w-full h-2/3 bg-gray-100 rounded-t-lg"></div>
         <div className="flex-col px-6 py-4 g-6">
           <h1 className="font-bold text-xl tracking-wider cursor-pointer">
-            <Link to={`/product/${prod.id + 1}`}>{prod.name}</Link>
+            <Link to={`/product/${prod.id + 1}`}>{prod.title}</Link>
           </h1>
           <p className="text-gray-400 text-sm font-medium mb-2">{prod.description.length >= 20 ? prod.description.slice(0,20) + ". . ." : prod.description}</p>
           <big className="text-xl text-slate-500 font-semibold">{prod.price} USD</big>
@@ -103,16 +30,16 @@ export default function Products() {
     )
   }
 
-  const tagRender = (tag : tagData) => {
+  const tag = (tag : Category) => {
     return (
-      <p className="text-xs font-bold">{tag.name}</p>
+      <p className="text-xs font-bold cursor-pointer">{tag.name}</p>
     )
   }
 
-  const categoryRender = (tag : tagData) => {
+  const categoryRender = (tag : Category) => {
     return (
       <div className="flex bg-gray-50 px-4 py-2 shadow-sm rounded-md justify-between items-center">
-        <p className="font-semibold">{tag.name}</p>
+        <p className="font-semibold cursor-pointer">{tag.name}</p>
         <div className="flex gap-4">
           <p className="rounded-full bg-gray-400 px-3 py-1 text-white font-medium text-sm">{tag.amount}</p>
           <button><Plus width={12} height={12} className="cursor-pointer"/></button>
@@ -123,7 +50,7 @@ export default function Products() {
 
   const selectTag = (selected : boolean) => { setSelected(!selected) }
 
-  const selectedRender = (tag : tagData) => {
+  const selectedRender = (tag : Category) => {
     return (
       <div className="flex bg-gray-300 text-sm font-semibold px-2 py-1 justify-between items-center gap-2">
         <p>{tag.name}</p>
@@ -142,14 +69,14 @@ export default function Products() {
           <XIcon onClick={() => setIsFilter(false)} className="cursor-pointer" width={64} />
         </div>
         <input type="text" className="w-1/2 shadow-md px-4 py-1 text-gray-300 text-sm font-normal rounded-full" onChange={(e) => setFilterInput(e.target.value)} value={filterInput ? filterInput : "Category"} />
-        <div className="flex flex-wrap gap-4">{data.map(selectedRender)}</div>
+        <div className="flex flex-wrap gap-4">{sampleCategory.map(selectedRender)}</div>
         <div className="flex flex-col gap-2">
-          {data.map(categoryRender)}
+          {sampleCategory.map(categoryRender)}
         </div>
       </nav>
       <nav className="flex border-2 border-gray-100 w-full px-10 py-5 items-center justify-center">
         <div className="flex w-1/2 justify-around">
-          {data.map(tagRender)}
+          {sampleCategory.map(tag)}
         </div>
       </nav>
       <main className="flex w-full h-full">
@@ -159,11 +86,11 @@ export default function Products() {
             <h1 className="text-3xl font-bold">Products</h1>
             <div className="flex gap-2 cursor-pointer" onClick={() => setIsFilter(!isFilter)}>
               <FilterIcon width={32}/>
-              <h3 className="text-md font-semibold">Filter by</h3>
+              <h3 className="text-md font-semibold mr-8">Filter by</h3>
             </div>
           </nav>
           <div className="flex gap-6">
-            {data_prod.map(prodRender)}
+            {sampleProduct.map(prodRender)}
           </div>
           </section>
       </main>
