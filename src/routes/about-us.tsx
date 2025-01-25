@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
-import { PersonStanding } from "lucide-react";
+import { Headphones, Mail, MessageCircle , PhoneCall, VideoIcon, SpeechIcon, Locate, Map } from "lucide-react";
 
 const data : profile[] = [
   {
@@ -22,6 +22,18 @@ const data : profile[] = [
     role : "Vice President",
     url : "http://fi.nu/lecnemuz",
   },
+  {
+    id : 3,
+    name : "Mabel Brown",
+    role : "Support Specialist",
+    url : "http://sev.pl/omuiwo",
+  },
+  {
+    id : 4,
+    name : "Wesley Byrd",
+    role : "Electronic Specialists",
+    url : "http://mamo.ca/liv",
+  },
 ]
 
 type profile = {
@@ -31,65 +43,70 @@ type profile = {
   url : string,
 }
 
-const CommentBox = () => {
-  
-  const [text, setText] = useState("")
-  const [input, setInput] = useState({
-    name : "",
-    email : "",
-    comment : "",
-  })
-  const [data, setData] = useState({
-    name : "",
-    email : "",
-    comment : "",
-  })
 
-  const adjustValue = (e : any) => {
-    if (e.target) {
-      if (e.target.id == "name") {
-        setInput({...input,
-          "name" : e.target.value
-        })
-      } else if (e.target.id == "email") {
-        setInput({...input,
-          "email" : e.target.value,
-        })
-      } else if (e.target.id == "comment") {
-        setInput({...input,
-          "comment" : e.target.value
-        })
-      }  
-    }
-  }
-
-  const submitData = () => {
-    setData({...input})
-
-    let to_json = data
-    let jsoned = JSON.stringify(to_json)
-    return jsoned
-  }
-
-
+const ContactForm = () => {
   return (
-    <section className="flex flex-col w-1/2 gap-8 bg-gray-50 shadow-lg px-12 py-10 rounded-lg">
-      <h1 className=" text-4xl font-bold self-center">Contact Us</h1>
-      <div className="flex flex-col gap-2">
-        <h4 className="font-bold text-lg">Name</h4>
-        <input id = {"name"} onChange = {(e) => setText(e.target.value)} type="text" className="rounded-lg p-2 shadow-sm" value = {text} />
+    <section className="flex gap-10 justify-center w-3/4 mt-10">
+      <div className="flex flex-col w-1/2 gap-8">
+        <div className="flex flex-col w-full gap-2">
+          <h2 className="text-xl font-semibold">Call Us</h2>
+          <p className="text-md font-normal text-gray-600">Call our support team 24/7.</p>
+          <div className="flex gap-2 items-center">
+            <PhoneCall width={16} height={16} />
+            <h4 className="text-lg font-semibold">571283-18-0248</h4>
+          </div>
+        </div>
+        <div className="flex flex-col w-full gap-2">
+          <h4 className="text-xl font-semibold">Chat with Us</h4>
+          <p className="text-md font-normal text-gray-600">Speak directly with our support specialist,</p>
+          <div className="flex flex-col gap-1 items-start">
+            <button className="text-lg font-semibold flex gap-2 items-center">
+              <MessageCircle width={16} height={16} />
+              <p>Start a live chat.</p>
+            </button>
+            <button className="text-lg font-semibold flex gap-2 items-center">
+              <Mail width={16} height={16}/>
+              <p>Sent us an email.</p>
+            </button>
+            <button className="text-lg font-semibold flex gap-2 items-center">
+              <SpeechIcon width={16} height={16} />
+              <p>Message us on social media.</p>
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col w-full gap-2">
+          <h4 className="text-xl font-semibold">Visit us</h4>
+          <p className="text-md font-normal text-gray-600">Our store located at Singapore around the block.</p>
+          <button className="text-md font-semibold flex gap-2 items-center">
+              <Map width={16} height={16} />
+              <p>Sindo Building 66 Tannery Lane #01-04a</p>
+          </button>
+        </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <h4 className="font-bold text-lg">Email address</h4>
-        <input id = {"email"} onChange = {adjustValue} type="text" className="rounded-lg p-2 shadow-sm" />
-      </div>
-      <div className="flex flex-col gap-2">
-        <h4 className="font-bold text-lg">Comments</h4>
-        <input id = "comment" onChange = {adjustValue} type="" className="rounded-lg p-2 shadow-sm" />
-      </div>
-      <div className="flex justify-between gap-4">
-        <button type="submit" onClick = {submitData} className="p-4 font-bold text-white text-lg bg-gray-400 rounded-xl w-6/12">Submit</button>
-        <button type="reset" onClick = {submitData} className="p-4 font-bold border-gray-300 border-2 text-lg rounded-xl w-6/12">Reset</button>
+      <div className="flex flex-col gap-4 w-5/6">
+        <div className="flex gap-4 w-full">
+          <div className="flex flex-col gap-2 justify-center w-1/2">
+            <p className="font-semibold text-lg">First Name</p>
+            <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"First Name"}/>
+          </div>
+          <div className="flex flex-col justify-center gap-2 w-1/2">
+            <p className="font-semibold text-lg">Last Name</p>
+            <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"Last Name"}/>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center gap-2 w-full">
+          <p className="font-semibold text-lg">Email</p>
+          <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"you@company.com"}/>
+        </div>
+        <div className="flex flex-col justify-center gap-2 w-full">
+          <p className="font-semibold text-lg">Phone Number</p>
+          <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"+1(555) 000-0000"}/>
+        </div>
+        <div className="flex flex-col justify-center gap-2 w-full">
+          <p className="font-semibold text-lg">Message</p>
+          <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"Leave Us a Message "}/>
+        </div>
+        <button type="submit" className="flex items-center bg-black text-white font-semibold px-8 py-4 rounded-full justify-center mt-4">Send Message</button>
       </div>
     </section>
   )
@@ -97,15 +114,12 @@ const CommentBox = () => {
 
 export default function AboutUs() {
 
-  const renderProfile = (data : profile) => {
+  const Profile = (data : profile) => {
       return (
-        <div className="flex flex-col gap-4 w-1/4" key = {data.id ? data.id : ""}>
-            <div className="flex items-center justify-center w-full bg-gray-100 p-4">
-              <PersonStanding width={48} height={48} className="self-center"/>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h1 className="text-2xl font-bold">{data.name ? data.name : ""}</h1>
-              <p className="text-gray-400 font-semibold">{data.role ? data.role : ""}</p>
+        <div className="flex flex-col gap-2 w-1/6 aspect-square shadow-md bg-gray-100 items-center justify-end p-5" key = {data.id ? data.id : ""}>
+            <div className="flex flex-col gap-2 bg-white justify-self-center px-4 py-3 w-full">
+              <h1 className="text-lg font-bold">{data.name ? data.name : ""}</h1>
+              <p className="text-gray-400 font-normal -mt-2">{data.role ? data.role : ""}</p>
             </div>
           </div>
       )
@@ -116,21 +130,25 @@ export default function AboutUs() {
       <Header />
       {/* Overview, Please render later thanks */}
       <body className="flex flex-col p-10 gap-10">
-        <section className="flex justify-between items-center">
-          <div className="flex flex-col gap-6 w-1/3 mx-10">
-            <h1 className="text-4xl font-bold">Eu aliquip veniam dolor consectetur sunt incididunt nisi pariatur quis velit.</h1>
-            <p className="text-lg font-normal">Minim aliquip incididunt sunt labore incididunt ad. Deserunt eiusmod aliquip consequat veniam fugiat id commodo enim. Aliqua dolor anim aliqua et. Consectetur nostrud dolor anim qui ex enim ea commodo laboris eiusmod proident amet eiusmod voluptate. Esse reprehenderit in consequat culpa elit non voluptate.</p>
+        <section className="flex justify-center items-center py-10">
+          <div className="flex flex-col gap-8 w-1/2 mx-10 text-center">
+            <h1 className="text-5xl font-bold">We are the team dedicate in developments of electronics.</h1>
+            <p className="text-lg font-normal text-gray-700 self-center w-2/3">Our staffs are able to consult and provide supports regarding maintenance and building components at reasonable price.</p>
+            <div className="flex gap-4 justify-center">
+              <button className="flex gap-2 items-center bg-black text-white px-8 py-3 rounded-full font-semibold"><VideoIcon width={24} height={24}/>Book a call.</button>
+              <button className="flex gap-2 items-center border-2 border-black px-8 py-3 rounded-full font-semibold"><Headphones width={24} height={24}/>Contact Us.</button>
+            </div>
           </div>
-          <div className="bg-gray-50  w-1/2 aspect-video rounded-2xl"></div>
         </section>
         <section className="flex flex-col items-center gap-8 mt-10">
           <h2 className="text-3xl font-bold">Key Members</h2>
-          <div className="flex flex-cols w-1/2 justify-between">
-            {data.map(renderProfile)}
+          <div className="flex flex-cols w-full justify-center gap-8">
+            {data.map(Profile)}
           </div>
         </section>
-        <section className="flex flex-col w-full items-center gap-4">
-          <CommentBox />
+        <section className="flex flex-col w-full items-center mt-10">
+          <ContactForm />
+          {/* <CommentBox /> */}
         </section>
       </body>
       <Footer />

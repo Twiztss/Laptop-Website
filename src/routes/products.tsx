@@ -38,7 +38,7 @@ export default function Products() {
 
   const categoryRender = (tag : Category) => {
     return (
-      <div className="flex bg-gray-50 px-4 py-2 shadow-sm rounded-md justify-between items-center">
+      <div className="flex bg-gray-50 px-4 py-2 shadow-sm rounded-md justify-between items-center"> 
         <p className="font-semibold cursor-pointer">{tag.name}</p>
         <div className="flex gap-4">
           <p className="rounded-full bg-gray-400 px-3 py-1 text-white font-medium text-sm">{tag.amount}</p>

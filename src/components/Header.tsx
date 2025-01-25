@@ -3,7 +3,7 @@ import { Heart, Laptop2Icon, ShoppingCart } from "lucide-react"
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center w-full bg-white px-10 py-5 sticky">
+    <header className="flex justify-between items-center w-full bg-white px-10 py-6 sticky">
         <div className="flex gap-10 font-bold text-xs">
             <Link to={"/"}>Home</Link>
             <Link to={"/features"}>Features</Link>
