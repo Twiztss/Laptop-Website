@@ -11,6 +11,7 @@ import AboutUs from './routes/about-us'
 import ProductDetail from './routes/product-detail'
 import Cart from './routes/cart'
 import Favorite from './routes/favorite'
+import Auth from './routes/auth'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path : "favorite",
     element : <Favorite />
+  },
+  {
+    path : "auth",
+    element : <Auth />
   },
 ])
 

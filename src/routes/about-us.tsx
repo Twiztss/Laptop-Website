@@ -1,50 +1,28 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
-import { Headphones, Mail, MessageCircle , PhoneCall, VideoIcon, SpeechIcon, Locate, Map } from "lucide-react";
-
-const data : profile[] = [
-  {
-    id : 0,
-    name : "Victoria Morton",
-    role : "Director",
-    url : "http://afbo.mh/je"
-  },
-  {
-    id : 1,
-    name : "Curtis Austin",
-    role : "Substitute",
-    url : "http://ihfaw.cd/vaika",
-  },
-  {
-    id : 2,
-    name : "Nancy Keller",
-    role : "Vice President",
-    url : "http://fi.nu/lecnemuz",
-  },
-  {
-    id : 3,
-    name : "Mabel Brown",
-    role : "Support Specialist",
-    url : "http://sev.pl/omuiwo",
-  },
-  {
-    id : 4,
-    name : "Wesley Byrd",
-    role : "Electronic Specialists",
-    url : "http://mamo.ca/liv",
-  },
-]
-
-type profile = {
-  id : number,
-  name : string,
-  role : string,
-  url : string,
-}
-
+import { Headphones, Mail, MessageCircle , PhoneCall, VideoIcon, SpeechIcon, Map } from "lucide-react";
+import { Staffs } from "../types/Users";
+import { sampleStaffs } from "../data/user-data";
 
 const ContactForm = () => {
+
+  const [userInput, setUserInput] = useState({
+    firstName : "First Name",
+    lastName : "Last Name",
+    email : "Email",
+    phoneNumber : "+1(555) 000-0000",
+    message : "Leave us a message",
+  })
+
+  const handleChange = (e : any) => {
+    const { id, value } = e.target 
+    setUserInput((userInput : any) => ({...userInput,
+      [id] : value
+    })
+    )
+  }
+
   return (
     <section className="flex gap-10 justify-center w-3/4 mt-10">
       <div className="flex flex-col w-1/2 gap-8">
@@ -87,24 +65,24 @@ const ContactForm = () => {
         <div className="flex gap-4 w-full">
           <div className="flex flex-col gap-2 justify-center w-1/2">
             <p className="font-semibold text-lg">First Name</p>
-            <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"First Name"}/>
+            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={userInput.firstName} required />
           </div>
           <div className="flex flex-col justify-center gap-2 w-1/2">
             <p className="font-semibold text-lg">Last Name</p>
-            <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"Last Name"}/>
+            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="lastName" value={userInput.lastName} required />
           </div>
         </div>
         <div className="flex flex-col justify-center gap-2 w-full">
           <p className="font-semibold text-lg">Email</p>
-          <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"you@company.com"}/>
+          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={userInput.email} required />
         </div>
         <div className="flex flex-col justify-center gap-2 w-full">
           <p className="font-semibold text-lg">Phone Number</p>
-          <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"+1(555) 000-0000"}/>
+          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={userInput.phoneNumber} />
         </div>
         <div className="flex flex-col justify-center gap-2 w-full">
           <p className="font-semibold text-lg">Message</p>
-          <input type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" value={"Leave Us a Message "}/>
+          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={userInput.message} required />
         </div>
         <button type="submit" className="flex items-center bg-black text-white font-semibold px-8 py-4 rounded-full justify-center mt-4">Send Message</button>
       </div>
@@ -114,9 +92,9 @@ const ContactForm = () => {
 
 export default function AboutUs() {
 
-  const Profile = (data : profile) => {
+  const Profile = (data : Staffs) => {
       return (
-        <div className="flex flex-col gap-2 w-1/6 aspect-square shadow-md bg-gray-100 items-center justify-end p-5" key = {data.id ? data.id : ""}>
+        <div className="flex flex-col gap-2 w-1/6 aspect-square shadow-md bg-gray-100 items-center justify-end p-5" key = {data.userId ? data.userId : ""}>
             <div className="flex flex-col gap-2 bg-white justify-self-center px-4 py-3 w-full">
               <h1 className="text-lg font-bold">{data.name ? data.name : ""}</h1>
               <p className="text-gray-400 font-normal -mt-2">{data.role ? data.role : ""}</p>
@@ -143,12 +121,11 @@ export default function AboutUs() {
         <section className="flex flex-col items-center gap-8 mt-10">
           <h2 className="text-3xl font-bold">Key Members</h2>
           <div className="flex flex-cols w-full justify-center gap-8">
-            {data.map(Profile)}
+            {sampleStaffs.map(Profile)}
           </div>
         </section>
         <section className="flex flex-col w-full items-center mt-10">
           <ContactForm />
-          {/* <CommentBox /> */}
         </section>
       </body>
       <Footer />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Heart, Laptop2Icon, ShoppingCart } from "lucide-react"
+import { Heart, Laptop2Icon, ShoppingCart, UserCircle } from "lucide-react"
 
 export default function Header() {
   return (
@@ -16,6 +16,7 @@ export default function Header() {
         <div className="flex gap-6">
           <Link to={"/favorite"}><Heart width={24} height={24}/></Link>
           <Link to={"/cart"}><ShoppingCart width={24} height={24}/></Link>
+          <Link to={"/auth"}><UserCircle width={24} height={24}/></Link>
         </div>
     </header>
   )
