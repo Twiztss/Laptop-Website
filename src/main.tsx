@@ -12,6 +12,7 @@ import ProductDetail from './routes/product-detail'
 import Cart from './routes/cart'
 import Favorite from './routes/favorite'
 import Auth from './routes/auth'
+import Profile from './routes/profile'
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path : "auth",
     element : <Auth />
+  },
+  {
+    path : "profile",
+    element : <Profile />
   },
 ])
 

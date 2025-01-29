@@ -2,6 +2,10 @@ import { Link } from "react-router-dom"
 import { Heart, Laptop2Icon, ShoppingCart, UserCircle } from "lucide-react"
 
 export default function Header() {
+
+  // Test credential
+  const isLoggedIn = true
+
   return (
     <header className="flex justify-between items-center w-full bg-white px-10 py-6 sticky">
         <div className="flex gap-10 font-bold text-xs">
@@ -16,7 +20,7 @@ export default function Header() {
         <div className="flex gap-6">
           <Link to={"/favorite"}><Heart width={24} height={24}/></Link>
           <Link to={"/cart"}><ShoppingCart width={24} height={24}/></Link>
-          <Link to={"/auth"}><UserCircle width={24} height={24}/></Link>
+          <Link to={`${isLoggedIn ? "/profile" : "/auth"}`}><UserCircle width={24} height={24}/></Link>
         </div>
     </header>
   )

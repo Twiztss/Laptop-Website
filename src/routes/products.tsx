@@ -4,17 +4,17 @@ import Header from "../components/Header";
 import { FilterIcon, Plus, XIcon } from "lucide-react"
 import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
-import sampleCategory from "../data/category-data";
-import sampleProduct from "../data/product-data";
 import { Product } from "../types/Product";
 import { Category } from "../types/Catogory";
+import {sampleCategory} from "../data/category-data";
+import sampleProduct from "../data/product-data";
 
 export default function Products() {
   const [isFilter, setIsFilter] = useState(false)
   const [filterInput, setFilterInput] = useState("")
   const [selected, setSelected] = useState(true)
 
-  const prodRender = (prod : Product) => {
+  const ProductCard = (prod : Product) => {
     return (
       <div className="flex flex-col w-1/5 gap-4 rounded-lg shadow-md justify-between aspect-square">
         <div className="self-center w-full h-2/3 bg-gray-100 rounded-t-lg"></div>
@@ -90,7 +90,7 @@ export default function Products() {
             </div>
           </nav>
           <div className="flex gap-6">
-            {sampleProduct.map(prodRender)}
+            {sampleProduct.map(ProductCard)}
           </div>
           </section>
       </main>

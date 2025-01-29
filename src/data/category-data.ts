@@ -1,6 +1,17 @@
-import { Category } from "../types/Catogory";
+import { Category, SubCategory } from "../types/Catogory";
 
-const sampleCategory : Category[] = [
+export const sampleSubCategory : SubCategory[] = [
+  { id : 0, name : "Sub Category 1" },
+  { id : 1, name : "Sub Category 2" },
+  { id : 2, name : "Sub Category 3" },
+  { id : 3, name : "Sub Category 4" },
+  { id : 4, name : "Sub Category 5" },
+  { id : 5, name : "Sub Category 6" },
+  { id : 6, name : "Sub Category 7" },
+  { id : 7, name : "Sub Category 8" },
+]
+
+export const sampleCategory : Category[] = [
     {
       id : 0,
       name : "Laptops",
