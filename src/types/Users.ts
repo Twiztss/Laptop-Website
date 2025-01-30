@@ -15,3 +15,9 @@ export interface Users {
     isMember : boolean,
     memberTier : string,
 }
+
+export interface MemberTier {
+  id : number,
+  title : string,
+  color : string,
+}

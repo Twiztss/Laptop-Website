@@ -1,4 +1,4 @@
-import { Box, CreditCard, Crown, FolderArchive, SidebarIcon, User, UserCircle } from "lucide-react"
+import { BookOpenTextIcon, Box, CreditCard, Crown, FolderArchive, ShieldAlert, SidebarIcon, User } from "lucide-react"
 import CreatableSelect from "react-select/creatable";
 import makeAnimated from 'react-select/animated';
 import { sampleSubCategory } from "../data/category-data";
@@ -63,38 +63,38 @@ const Filter = () => {
   )
 }
 
-const ProfileIcon = () => {
-  return (
-    <div className="flex w-full items-center justify-start gap-4 px-6 py-4 rounded-lg border-gray-100 border-2">
-      <UserCircle height={48} width={48} className="w-1/4"/>
-      <div className="flex flex-col gap-1">
-        <h1 className="text-lg font-semibold">Username</h1>
-        <h2 className="text-sm text-gray-400 -my-2 font-medium">Email</h2>
-        <button className="mt-2 border-gray-100 border-2 px-2 py-1 rounded-md font-medium">Edit Profile</button>
-      </div>
-    </div>
-  )
-}
-
 const ProfileOption = ({handleClick} : any) => {
   return (
-    <div className="flex flex-col gap-4">
-      <p className="font-semibold text-lg">User</p>
-      <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
-        <User color="gray"/>
-        <p className="font-semibold text-xl text-gray-500">Accounts</p>
+    <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-2">
+        <p className="font-semibold text-lg">User</p>
+        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
+          <User color="gray"/>
+          <p className="font-semibold text-xl text-gray-500">Accounts</p>
+        </div>
+        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Payment">
+          <CreditCard color="gray"/>
+          <p className="font-semibold text-xl text-gray-500">Payment Method</p>
+        </div>
+        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Subscriptions">
+          <Crown color="gray"/>
+          <p className="font-semibold text-xl text-gray-500">Subscriptions</p>
+        </div>
+        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Orders">
+          <Box color="gray"/>
+          <p className="font-semibold text-xl text-gray-500">Orders</p>
+        </div>
       </div>
-      <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Payment">
-        <CreditCard color="gray"/>
-        <p className="font-semibold text-xl text-gray-500">Payment Method</p>
-      </div>
-      <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Subscriptions">
-        <Crown color="gray"/>
-        <p className="font-semibold text-xl text-gray-500">Subscriptions</p>
-      </div>
-      <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Orders">
-        <Box color="gray"/>
-        <p className="font-semibold text-xl text-gray-500">Orders</p>
+      <div className="flex flex-col gap-2">
+        <p className="font-semibold text-lg">Settings</p>
+        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
+          <BookOpenTextIcon color="gray"/>
+          <p className="font-semibold text-xl text-gray-500">Preferences</p>
+        </div>
+        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
+          <ShieldAlert color="gray"/>
+          <p className="font-semibold text-xl text-gray-500">Privacy</p>
+        </div>
       </div>
     </div>
   )
@@ -125,8 +125,8 @@ export default function Sidebar({ handleClick } : any) {
     } else if (url == "/profile") {
       // p-8
       component = (
-        <section className="flex flex-col gap-6 px-8 py-4">
-          <ProfileIcon />
+        <section className="flex flex-col gap-6 p-8">
+          <h1 className="text-2xl font-bold">Profile</h1>
           <ProfileOption handleClick={handleClick} />
         </section>
       )

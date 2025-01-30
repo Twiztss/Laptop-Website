@@ -12,7 +12,7 @@ import ProductDetail from './routes/product-detail'
 import Cart from './routes/cart'
 import Favorite from './routes/favorite'
 import Auth from './routes/auth'
-import Profile from './routes/profile'
+import Profile from './routes/Profile/profile'
 
 const router = createBrowserRouter([
   {

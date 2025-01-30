@@ -1,4 +1,4 @@
-import { Staffs, Users } from "../types/Users";
+import { MemberTier, Staffs, Users } from "../types/Users";
 
 export const sampleStaffs : Staffs[] = [
     {
@@ -68,4 +68,12 @@ export const sampleUsers : Users[] = [
       isMember : false,
       memberTier : "Regular",
     },
+]
+
+export const sampleTier : MemberTier[] = [
+    {
+      id : 0,
+      title : "Regular",
+      color : "Red",
+    }
 ]
