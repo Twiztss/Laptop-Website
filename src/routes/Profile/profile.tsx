@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import sampleCategory from "../../data/category-data";
 import { Category } from "../../types/Catogory";
 import { sampleUsers } from "../../data/user-data";
-import Account from "./account";
+import Settings from "./settings";
 
 export default function Profile() {
 
@@ -22,7 +22,7 @@ export default function Profile() {
         }
 
     return (
-    <body className="flex flex-col w-full h-screen justify-between">
+    <body className="flex flex-col w-full h-screen justify-between overflow-y-scroll">
         <Header />
         <nav className="flex border-2 border-gray-100 w-full px-10 py-5 items-center justify-center">
         <div className="flex w-1/2 justify-around">
@@ -35,7 +35,7 @@ export default function Profile() {
                 <nav className="flex justify-between">
                     <h1 className="text-2xl font-bold">{currentPage}</h1>
                 </nav>
-                <Account {...sampleUsers[1]}/>
+                <Settings {...sampleUsers[1]}/>
             </section>
         </main>
         <Footer />
