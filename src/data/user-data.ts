@@ -1,5 +1,33 @@
 import { MemberTier, Staffs, Users } from "../types/Users";
 
+export const sampleTier : MemberTier[] = [
+  {
+    id : 0,
+    title : "Regular",
+    color : "Red",
+  },
+  {
+    id : 1,
+    title : "Silver",
+    color : "lightgray",
+  },
+  {
+    id : 2,
+    title : "Gold",
+    color : "yellow",
+  },
+  {
+    id : 3,
+    title : "Platinum",
+    color : "gray",
+  },
+  {
+    id : 4,
+    title : "Diamond",
+    color : "blue",
+  },
+]
+
 export const sampleStaffs : Staffs[] = [
     {
       userId : 0,
@@ -50,7 +78,21 @@ export const sampleUsers : Users[] = [
       email : "awasi@zar.kp",
       password : "jKUsCJtLzWAcw",
       isMember : true,
-      memberTier : "Gold",
+      memberTier : sampleTier[0],
+      payment : {
+        option : "Mastercard",
+        cardName : "Carolina Masery",
+        cardNumber : 7978701,
+        cvv : 308,
+        date : new Date(),
+        billingAddress : {
+          address1 : "789 Oak Drive",
+          address2 : "Floor 3",
+          state : "San Salvador",
+          postal : "1101",
+          country : "El Salvador",
+        },
+      }
     },
     {
       userId : 24615,
@@ -58,7 +100,21 @@ export const sampleUsers : Users[] = [
       email : "ifmi@wor.rw",
       password : "xGMbrL9YK7Kb7Mlmxyg",
       isMember : false,
-      memberTier : "Regular",
+      memberTier : sampleTier[3],
+      payment : {
+        option : "Mastercard",
+        cardName : "Carolina Masery",
+        cardNumber : 7978701,
+        cvv : 308,
+        date : new Date(),
+        billingAddress : {
+          address1 : "123 Maple Street",
+          address2 : "Apartment 4B",
+          state : "California",
+          postal : "90210",
+          country : "USA",
+        },
+      }
     },
     {
       userId : 70368,
@@ -66,14 +122,20 @@ export const sampleUsers : Users[] = [
       email : "dozkuf@medudcad.io",
       password : "h1uAnya",
       isMember : false,
-      memberTier : "Regular",
+      memberTier : sampleTier[1],
+      payment : {
+        option : "Visa",
+        cardName : "Marcus Wade",
+        cardNumber : 8844737,
+        cvv : 790,
+        date : new Date(),
+        billingAddress : {
+          address1 : "456 Elm Avenue",
+          address2 : "Suite 12",
+          state : "Ontario",
+          postal : "M5H2N2",
+          country : "Canada",
+        },
+      }
     },
-]
-
-export const sampleTier : MemberTier[] = [
-    {
-      id : 0,
-      title : "Regular",
-      color : "Red",
-    }
 ]

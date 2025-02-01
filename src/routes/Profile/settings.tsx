@@ -1,4 +1,4 @@
-import { EyeClosed, EyeIcon, Pencil } from "lucide-react";
+import { Banknote, CircleAlert, DiamondIcon, EyeClosed, EyeIcon, Gift, IdCard, Pencil } from "lucide-react";
 import { Users } from "../../types/Users";
 import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
@@ -30,7 +30,7 @@ const ProfileCard = (user : Users) => {
     )
 }
 
-const AddressCard = (user : Users) => {
+const AddressCard = ( user : Users ) => {
     return (
         <article className="border-gray-50 border-2 shadow-sm rounded-lg p-8 flex flex-col gap-6 w-full">
             <div className="flex justify-between items-center">
@@ -42,38 +42,32 @@ const AddressCard = (user : Users) => {
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">Country</p>
-                    <h3 className="text-lg font-semibold text-gray-400">United States of America</h3>
+                    <p className="font-medium text-lg">Country</p>
+                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.country}</h3>
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">City/State</p>
-                    <h3 className="text-lg font-semibold text-gray-400">New Hampshire</h3>
+                    <p className="font-medium text-lg">City/State</p>
+                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.state}</h3>
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">City/State 2</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.email}</h3>
+                    <p className="font-medium text-lg">City/State 2</p>
+                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.state}</h3>
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">Postal Code</p>
-                    <h3 className="text-lg font-semibold text-gray-400">AS564178969</h3>
+                    <p className="font-medium text-lg">Postal Code</p>
+                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.postal}</h3>
                 </div>
             </div>
         </article>
     )
 }
 
-const PaymentCard = () => {
+const PaymentCard = (user : Users ) => {
 
     const [currentPayment, setCurrentPayment] = useState(paymentOption[4])
-    const [cardInfo, setCardInfo] = useState({
-        option : currentPayment.value,
-        nameCard : "First Name",
-        cardNumber : "7067322681023",
-        cvv : "297",
-        date : (new Date()),
-    })
+    const [cardInfo, setCardInfo] = useState(user.payment)
 
     const handleOption = (e : Event) => {
         setCurrentPayment(e)
@@ -133,7 +127,7 @@ const PaymentCard = () => {
                 <div className="flex gap-4 w-full">
                     <div className="flex flex-col gap-2 justify-center w-full">
                         <p className="font-semibold text-lg">Name on card</p>
-                        <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={cardInfo.nameCard} required />
+                        <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={cardInfo.cardName} required />
                     </div>
                 </div>
                 <div className="flex gap-4">
@@ -221,11 +215,11 @@ const InfoCard = (user : Users) => {
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">Username</p>
+                    <p className="font-medium text-lg">Username</p>
                     <h3 className="text-lg font-semibold text-gray-400">{user.userName}</h3>
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">User ID</p>
+                    <p className="font-medium text-lg">User ID</p>
                     <div className="flex items-center gap-6">
                         <h3 className="text-lg font-semibold text-gray-400">{isDisplayed ? user.userId : "*****"}</h3>
                         {isDisplayed ? <EyeIcon width={16} height={16} onClick={() => setIsDisplayed(!isDisplayed)}/> : <EyeClosed width={16} height={16} onClick={() => setIsDisplayed(!isDisplayed)} />}
@@ -234,18 +228,76 @@ const InfoCard = (user : Users) => {
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">Email Address</p>
+                    <p className="font-medium text-lg">Email Address</p>
                     <h3 className="text-lg font-semibold text-gray-400">{user.email}</h3>
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg text-gray-300">Phone Number</p>
+                    <p className="font-medium text-lg">Phone Number</p>
                     <h3 className="text-lg font-semibold text-gray-400">(603) 588-7174</h3>
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-full">
-                    <p className="font-medium text-lg text-gray-300">Description</p>
+                    <p className="font-medium text-lg">Description</p>
                     <h3 className="text-lg font-semibold text-gray-400">Ad ex est officia officia fugiat minim anim do ex duis velit aute.</h3>
+                </div>
+            </div>
+        </article>
+    )
+}
+
+const SubscriptionCard = ( user : Users ) => {
+
+    const date = new Date()
+
+    return (
+        <article className="border-gray-50 border-2 shadow-sm rounded-lg p-8 flex flex-col gap-6 w-full">
+            <div className="flex justify-between items-center">
+                <h1 className="font-bold text-2xl">Subscriptions</h1>
+            </div>
+            <div className="flex w-1/2 justify-between">
+                <div className="flex flex-col gap-2 w-1/2">
+                    <p className="font-semibold text-lg">Current Tier</p>
+                    <div className="flex gap-2 items-center">
+                        <DiamondIcon width={24} height={24} color={user.memberTier.color} /> 
+                        <h3 className="text-2xl font-bold" color={user.memberTier.color}>{user.memberTier.title }</h3>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-2 w-1/2">
+                    <p className="font-medium text-lg">Next Payment</p>
+                    <h3 className="text-lg font-semibold text-gray-400">{(date.getMonth()) + "/" + (date.getDay()) + "/" + date.getFullYear()}</h3>
+                    <div className="flex items-center gap-2">
+                        <IdCard />
+                        <h4 className="text-sm font-semibold">4284-28921-482</h4>
+                    </div>
+                </div>
+            </div>
+            <div className="flex w-1/2 gap-2 justify-between">
+                <div className="flex flex-col gap-2 w-1/3 p-4 bg-blue-100 rounded-lg">
+                    <h2 className="font-semibold text-lg">Plan benefits</h2>
+                    <ul className="list-disc px-6 font-semibold flex flex-col gap-1">
+                        <li className="">Free Delivery Cost</li>
+                        <li className="">Pre-order Discount</li>
+                        <li className="">Tiered Discount</li>
+                        <li className="">Mix-and-Match Bundle</li>
+                    </ul>
+                </div>
+                <div className="flex flex-col gap-2 w-1/2">
+                    <h2 className="font-semibold text-lg">Manage Subscription</h2>
+                    <div className="font-semibold flex flex-col gap-2">
+                        <div className="flex gap-2 items-center cursor-pointer">
+                            <Banknote color="gray"/>
+                            <p className="font-medium text-base text-gray-400">Change subscription plan</p>
+                        </div>
+                        <div className="flex gap-2 items-center cursor-pointer">
+                            <Gift color="gray"/>
+                            <p className="font-medium text-base text-gray-400">Redeem gift card codes</p>
+                        </div>
+                        <div className="flex gap-2 items-center cursor-pointer">
+                            <CircleAlert color="gray"/>
+                            <p className="font-medium text-base text-gray-400">Cancel a subscription</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>
@@ -259,7 +311,8 @@ export default function Settings( user : Users ) {
         <ProfileCard {...user} />
         <InfoCard {...user} />
         <AddressCard {...user} />
-        <PaymentCard />
+        <PaymentCard {...user} />
+        <SubscriptionCard {...user} />
     </div>
   )
 }

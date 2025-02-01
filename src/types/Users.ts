@@ -1,3 +1,5 @@
+import { PaymentOption } from "./Payment";
+
 export interface Staffs {  
     userId : number,
     name : string,
@@ -13,7 +15,8 @@ export interface Users {
     email : string,
     password : string,
     isMember : boolean,
-    memberTier : string,
+    memberTier : MemberTier ,
+    payment : PaymentOption,
 }
 
 export interface MemberTier {
