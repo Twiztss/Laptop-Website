@@ -4,27 +4,62 @@ export const sampleTier : MemberTier[] = [
   {
     id : 0,
     title : "Regular",
-    color : "Red",
+    color : "black",
+    description : "For casual shoppers trying out new products.",
+    price : 0,
+    benefits : [
+      "Sample benefit 1",
+    ],
   },
   {
     id : 1,
     title : "Silver",
     color : "lightgray",
+    description : "Offers limited yet beneficial perks for your purchases.",
+    price : 1.99,
+    benefits : [
+      "Sample benefit 1",
+      "Sample benefit 2",
+    ],
   },
   {
     id : 2,
     title : "Gold",
-    color : "yellow",
+    color : "orange",
+    description : "For enthusiast looking for enjoyable discounts.",
+    price : 2.99,
+    benefits : [
+      "Sample benefit 1",
+      "Sample benefit 2",
+      "Sample benefit 3",
+    ],
   },
   {
     id : 3,
     title : "Platinum",
     color : "gray",
+    description : "Provides exotic feature exclusively.",
+    price : 3.99,
+    benefits : [
+      "Sample benefit 1",
+      "Sample benefit 2",
+      "Sample benefit 3",
+      "Sample benefit 4",
+    ],
   },
   {
     id : 4,
     title : "Diamond",
-    color : "blue",
+    color : "lightblue",
+    description : "Experience ultimate shopping experience.",
+    price : 4.99,
+    benefits : [
+      "Sample benefit 1",
+      "Sample benefit 2",
+      "Sample benefit 3",
+      "Sample benefit 4",
+      "Sample benefit 5",
+    ],
   },
 ]
 

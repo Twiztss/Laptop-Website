@@ -2,6 +2,7 @@ import { Banknote, CircleAlert, DiamondIcon, EyeClosed, EyeIcon, Gift, IdCard, P
 import { Users } from "../../types/Users";
 import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
+import { Link } from "react-router-dom";
 
 const paymentOption : any = [
     { value: 'mastercard', label: 'Mastercard' },
@@ -147,22 +148,22 @@ const PaymentCard = (user : Users ) => {
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col justify-center gap-2">
                         <p className="font-semibold text-lg">Billing Address</p>
-                        <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={cardInfo.cardNumber} required />
+                        <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={cardInfo.billingAddress.address1} required />
                     </div>
-                    <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={cardInfo.cvv} />
+                    <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={cardInfo.billingAddress.address2} />
                     <div className="flex justify-center gap-4">
                         <div className="flex flex-col justify-center gap-2 w-1/2">
                             <p className="font-semibold text-lg">State/Province</p>
-                            <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={cardInfo.date.getUTCFullYear() + "/" + (cardInfo.date.getMonth() + 1)} required />
+                            <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={cardInfo.billingAddress.state} required />
                         </div>
                         <div className="flex flex-col justify-center gap-2 w-1/2">
                             <p className="font-semibold text-lg">Postal Code</p>
-                            <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={cardInfo.date.getUTCFullYear() + "/" + (cardInfo.date.getMonth() + 1)} required />
+                            <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={cardInfo.billingAddress.postal} required />
                         </div>
                     </div>
                     <div className="flex flex-col justify-center gap-2">
                         <p className="font-semibold text-lg">Country</p>
-                        <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={cardInfo.cardNumber} required />
+                        <input onChange={handleForm} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={cardInfo.billingAddress.country} required />
                     </div>
                 </div>
             </div>
@@ -287,7 +288,7 @@ const SubscriptionCard = ( user : Users ) => {
                     <div className="font-semibold flex flex-col gap-2">
                         <div className="flex gap-2 items-center cursor-pointer">
                             <Banknote color="gray"/>
-                            <p className="font-medium text-base text-gray-400">Change subscription plan</p>
+                            <Link className="font-medium text-base text-gray-400" to={"/subscription"}>Change subscription plan</Link>
                         </div>
                         <div className="flex gap-2 items-center cursor-pointer">
                             <Gift color="gray"/>

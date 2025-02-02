@@ -8,8 +8,8 @@ export interface PaymentOption {
 }
 
 export interface Address {
-    address1 : string | null,
-    address2 : string | null,
+    address1 : string,
+    address2 : string,
     state : string,
     postal : string,
     country : string,
