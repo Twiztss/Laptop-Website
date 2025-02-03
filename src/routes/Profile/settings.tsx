@@ -1,8 +1,10 @@
-import { Banknote, CircleAlert, DiamondIcon, EyeClosed, EyeIcon, Gift, IdCard, Pencil } from "lucide-react";
+import { Banknote, Check, CircleAlert, DiamondIcon, EyeClosed, EyeIcon, Gift, IdCard, Pencil } from "lucide-react";
 import { Users } from "../../types/Users";
 import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import { Link } from "react-router-dom";
+import { sampleInvoice } from "../../data/user-data";
+import { Invoice } from "../../types/Payment";
 
 const paymentOption : any = [
     { value: 'mastercard', label: 'Mastercard' },
@@ -305,6 +307,68 @@ const SubscriptionCard = ( user : Users ) => {
     )
 }
 
+const OrderInfo = (user : Users, invoice : Invoice) => {
+
+    const Ordercard = ( user : Users ) => {
+
+        const { id, status, amount, totalPrice} = sampleInvoice[2]
+
+        return (
+            <div className="flex justify-between items-center w-full rounded-lg">
+                <div className="flex gap-4 w-1/6">
+                    <input type="checkbox" name="" id="" />
+                    <Link className="font-semibold text-lg" to={""}>Invoice #{id}</Link>
+                </div>
+                <div className="flex gap-2 w-1/6">
+                    <div className="p-2 bg-green-100 flex justify-center items-center gap-2 w-7/12 rounded-full">
+                        <Check color={status.color} width={16} height={16}/>
+                        <h1 className="font-semibold text-base text-green-600">{status.title}</h1>
+                    </div>
+                </div>
+                <div className="flex gap-4 items-center w-1/4">
+                    <div className="bg-gray-200 rounded-full w-10 aspect-square"></div>
+                    <div className="flex flex-col">
+                        <h3 className="text-base font-medium">{user.userName}</h3>
+                        <p className="text-sm text-gray-400">{user.email}</p>
+                    </div>
+                </div>
+                <div className="flex w-1/3 justify-evenly">
+                    <h3 className="text-base font-medium w-1/3">{amount}</h3>
+                    <h3 className="text-base font-medium w-1/3">{"1/1/2025"}</h3>
+                    <h3 className="text-base font-medium w-1/3">USD {totalPrice}</h3>
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <article className="border-gray-50 border-2 shadow-sm rounded-lg p-8 flex flex-col gap-6 w-full">
+            <div className="flex justify-between items-center">
+                <h1 className="font-bold text-2xl">Order</h1>
+            </div>
+            <div className="flex flex-col w-full gap-6">
+                <p className="font-medium text-lg ">Billing History</p>
+                <p className="text-base text-gray-400 -mt-6">Review and track your order here.</p>
+                <input type="text" value={"Search"} className="text-gray-400 rounded-lg px-4 py-2 border-2 border-gray-100 w-1/3" />
+                <div className="flex flex-col gap-4">
+                    <div className="flex justify-between items-center w-full -mb-2 mt-2">
+                        <h1 className="font-semibold text-base w-1/6">Invoice</h1>
+                        <h1 className="font-semibold text-base w-1/6">Status</h1>
+                        <h1 className="font-semibold text-base w-1/4">User</h1>
+                        <div className="flex w-1/3 items-center justify-evenly">
+                            <h3 className="text-base font-medium w-1/3">Amount</h3>
+                            <h3 className="text-base font-medium w-1/3">Purchased</h3>
+                            <h3 className="text-base font-medium w-1/3">Total</h3>
+                        </div>
+                    </div>
+                    <hr />
+                    <Ordercard {...user} {...invoice} />
+                </div>
+            </div>
+        </article>
+    )
+}
+
 export default function Settings( user : Users ) {
 
     return (
@@ -314,6 +378,7 @@ export default function Settings( user : Users ) {
         <AddressCard {...user} />
         <PaymentCard {...user} />
         <SubscriptionCard {...user} />
+        <OrderInfo {...user} />
     </div>
   )
 }

@@ -1,4 +1,6 @@
+import { Invoice, Status } from "../types/Payment";
 import { MemberTier, Staffs, Users } from "../types/Users";
+import sampleProduct from "./product-data";
 
 export const sampleTier : MemberTier[] = [
   {
@@ -60,6 +62,29 @@ export const sampleTier : MemberTier[] = [
       "Sample benefit 4",
       "Sample benefit 5",
     ],
+  },
+]
+
+export const sampleStatus : Status[] = [
+  {
+    id : 0,
+    title : "Unpaid",
+    color : "lightgray",
+  },
+  {
+    id : 1,
+    title : "Pending",
+    color : "gray",
+  },
+  {
+    id : 2,
+    title : "Delivering",
+    color : "purple",
+  },
+  {
+    id : 2,
+    title : "Delivered",
+    color : "green",
   },
 ]
 
@@ -173,4 +198,28 @@ export const sampleUsers : Users[] = [
         },
       }
     },
+]
+
+export const sampleInvoice : Invoice[] = [
+  {
+    id : "P3fn6q6mM",
+    product : [sampleProduct[2], sampleProduct[0]],
+    status : sampleStatus[0],
+    amount : 2,
+    totalPrice : sampleProduct[2].price + sampleProduct[0].price,
+  },
+  {
+    id : "oMxvl7ZaUP",
+    product : [sampleProduct[1]],
+    status : sampleStatus[0],
+    amount : 1,
+    totalPrice : sampleProduct[1].price,
+  },
+  {
+    id : "FQ0Je2Fk",
+    product : [sampleProduct[1], sampleProduct[2], sampleProduct[3]],
+    status : sampleStatus[3],
+    amount : 3,
+    totalPrice : sampleProduct[1].price + sampleProduct[2].price + sampleProduct[3].price
+  },
 ]

@@ -29,6 +29,33 @@ const sampleProduct : Product[] = [
         price: 39.99,
         amount : 29,
     },
+    {
+        id: 3,
+        title: "Product 4",
+        description: "This is a description for sample item 4.",
+        category: sampleCategory[2].name,
+        url : "",
+        price: 19.99,
+        amount : 3,
+    },
+    {
+        id: 4,
+        title: "Product 5",
+        description: "This is a description for sample item 5.",
+        category: sampleCategory[2].name,
+        url : "",
+        price: 9.99,
+        amount : 47,
+    },
+    {
+        id: 5,
+        title: "Product 6",
+        description: "This is a description for sample item 6.",
+        category: sampleCategory[2].name,
+        url : "",
+        price: 49.99,
+        amount : 12,
+    },
 ];
 
 export default sampleProduct;
