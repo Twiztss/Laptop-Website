@@ -1,19 +1,59 @@
-<div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-  </a> <br><br>
 
-  <h1 align="center">Laptop Website</h1>
+# Laptop Website
 
-  <p align="center">
-    Currently a boilerplate for E-Commerce website or future design using React, TailwindCSS, and external UI library (currently exploring option as of now)</b><br> 
-    <br />
-    <a href="#"><strong>Explore the project »</strong></a>
-    <br />
-    <br />
-    <a href="#">Project Example</a>
-    ·
-    <a href="#">Project Preview</a>
-    ·
-    <a href="#">Other Projects</a>
-  </p>
-</div>
+An E-commerce website template with most of basic functionality such as product filters and authentications utilizing Typescript, TailwindCSS, React Router, Redux, and few UI libraries. 
+
+
+
+
+## Pages
+
+- Main Page
+- Feature Page
+- About Us Page
+- Cart Page
+- Favorite Page
+- Authentication Page
+- Products
+    - Product Detail
+- Profile / Settings Page
+    - Account
+    - Payment Detail
+    - Subscription
+    - Order
+
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Twiztss/Laptop-Website
+```
+
+Go to the project directory
+
+```bash
+  cd Laptop-Website
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+
+## Tech Stack
+
+**Client:** React, React Router, TailwindCSS
+
+**Server:** 
+
