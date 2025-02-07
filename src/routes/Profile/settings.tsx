@@ -317,7 +317,7 @@ const OrderInfo = (user : Users, invoice : Invoice) => {
             <div className="flex justify-between items-center w-full rounded-lg">
                 <div className="flex gap-4 w-1/6">
                     <input type="checkbox" name="" id="" />
-                    <Link className="font-semibold text-lg" to={""}>Invoice #{id}</Link>
+                    <Link className="font-semibold text-lg" to={`/order/${id + 1}`}>Invoice #{id}</Link>
                 </div>
                 <div className="flex gap-2 w-1/6">
                     <div className="p-2 bg-green-100 flex justify-center items-center gap-2 w-7/12 rounded-full">

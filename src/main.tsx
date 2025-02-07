@@ -14,6 +14,7 @@ import Favorite from './routes/favorite'
 import Auth from './routes/auth'
 import Profile from './routes/Profile/profile'
 import Subscription from './routes/subscription'
+import OrderDetail from './routes/order-detail'
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path : "subscription",
     element : <Subscription />
+  },
+  {
+    path : "order/:orderId",
+    element : <OrderDetail />
   },
 ])
 
