@@ -14,6 +14,8 @@ export interface Users {
     userName : string,
     email : string,
     password : string,
+    phoneNumber : number,
+  description : string,
     isMember : boolean,
     memberTier : MemberTier ,
     payment : PaymentOption,

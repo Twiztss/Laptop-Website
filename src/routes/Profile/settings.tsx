@@ -4,7 +4,7 @@ import { useState } from "react";
 import CreatableSelect from "react-select/creatable";
 import { Link } from "react-router-dom";
 import { sampleInvoice } from "../../data/user-data";
-import { Invoice } from "../../types/Payment";
+import { Address, Invoice } from "../../types/Payment";
 
 const paymentOption : any = [
     { value: 'mastercard', label: 'Mastercard' },
@@ -33,34 +33,57 @@ const ProfileCard = (user : Users) => {
     )
 }
 
-const AddressCard = ( user : Users ) => {
+const AddressCard = ( address : Address ) => {
+
+    const [isEdit, setEdit] = useState(false)
+    const [currentAddress, setCurrentAddress] = useState({
+        ...address
+    })
+
+    const allowEdit = () => {
+        setEdit(isEdit => !isEdit)
+        console.log(currentAddress)
+    }
+
+    const handleChange = (e : any) => {
+        if (isEdit) {
+            let {name , value} = e.target
+            setCurrentAddress(currentAddress => (
+                {
+                    ...currentAddress,
+                    [name] : value
+                }
+            ))
+        }
+    }
+
     return (
         <article className="border-gray-50 border-2 shadow-sm rounded-lg p-8 flex flex-col gap-6 w-full">
             <div className="flex justify-between items-center">
                 <h1 className="font-bold text-2xl">Address</h1>
-                <button className="border-gray-100 border-2 flex items-center gap-2 px-4 py-2 rounded-md">
+                <button className="border-gray-100 border-2 flex items-center gap-2 px-4 py-2 rounded-md" onClick={allowEdit}>
                     <Pencil width={16} height={16} color="gray" />
-                    <p className="font-semibold text-md text-gray-400">Edit</p>
+                    <p className="font-semibold text-md text-gray-400">{isEdit ? "Editable" : "Uneditable"}</p>
                 </button>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
                     <p className="font-medium text-lg">Country</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.country}</h3>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"country"} value={currentAddress.country} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">City/State</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.state}</h3>
+                    <p className="font-medium text-lg">Address</p>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"address1"} value={currentAddress.address1} onChange={handleChange}/>
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">City/State 2</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.state}</h3>
+                    <p className="font-medium text-lg">City/State</p>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"state"} value={currentAddress.state} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
                     <p className="font-medium text-lg">Postal Code</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.payment.billingAddress.postal}</h3>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"postal"} value={currentAddress.postal} onChange={handleChange} />
                 </div>
             </div>
         </article>
@@ -206,25 +229,46 @@ const PaymentCard = (user : Users ) => {
 const InfoCard = (user : Users) => {
 
     const [isDisplayed, setIsDisplayed] = useState(false)
-    
+    const [isEdit, setEdit] = useState(false)
+    const [userInfo, setUserInfo] = useState({
+        ...user
+    })
+
+    const allowEdit = () => {
+        setEdit(isEdit => (!isEdit))
+        console.log(userInfo)
+    }
+
+    const handleChange = (e : any) => {
+        if (isEdit) {
+            let {name , value} = e.target
+            setUserInfo(userInfo => (
+                {
+                    ...userInfo,
+                    [name] : value
+                }
+            ))
+        }
+    }
+
     return (
         <article className="border-gray-50 border-2 shadow-sm rounded-lg p-8 flex flex-col gap-6 w-full">
             <div className="flex justify-between items-center">
                 <h1 className="font-bold text-2xl">Personal Information</h1>
-                <button className="border-gray-100 border-2 flex items-center gap-2 px-4 py-2 rounded-md">
+                <button className="border-gray-100 border-2 flex items-center gap-2 px-4 py-2 rounded-md" onClick={allowEdit}>
                     <Pencil width={16} height={16} color="gray" />
-                    <p className="font-semibold text-md text-gray-400">Edit</p>
+                    <p className="font-semibold text-md text-gray-400">{isEdit ? "Editable" : "Uneditable"}</p>
                 </button>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
                     <p className="font-medium text-lg">Username</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.userName}</h3>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"userName"} value={userInfo.userName} placeholder={user.userName} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
                     <p className="font-medium text-lg">User ID</p>
-                    <div className="flex items-center gap-6">
-                        <h3 className="text-lg font-semibold text-gray-400">{isDisplayed ? user.userId : "*****"}</h3>
+                    <div className="flex items-center gap-6 w-1/2">
+                        <input className="text-lg font-semibold text-gray-400 w-full outline-none" name={"userId"} value={isDisplayed ? userInfo.userId : "Hidden"} onChange={handleChange}/>
                         {isDisplayed ? <EyeIcon width={16} height={16} onClick={() => setIsDisplayed(!isDisplayed)}/> : <EyeClosed width={16} height={16} onClick={() => setIsDisplayed(!isDisplayed)} />}
                     </div>
                 </div>
@@ -232,17 +276,17 @@ const InfoCard = (user : Users) => {
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
                     <p className="font-medium text-lg">Email Address</p>
-                    <h3 className="text-lg font-semibold text-gray-400">{user.email}</h3>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"email"} value={userInfo.email} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
                     <p className="font-medium text-lg">Phone Number</p>
-                    <h3 className="text-lg font-semibold text-gray-400">(603) 588-7174</h3>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"phoneNumber"} value={userInfo.phoneNumber} onChange={handleChange} />
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-full">
                     <p className="font-medium text-lg">Description</p>
-                    <h3 className="text-lg font-semibold text-gray-400">Ad ex est officia officia fugiat minim anim do ex duis velit aute.</h3>
+                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"description"} value={userInfo.description} onChange={handleChange} />
                 </div>
             </div>
         </article>
@@ -375,7 +419,7 @@ export default function Settings( user : Users ) {
     <div className="flex flex-col gap-6">
         <ProfileCard {...user} />
         <InfoCard {...user} />
-        <AddressCard {...user} />
+        <AddressCard {...user.payment.billingAddress} />
         <PaymentCard {...user} />
         <SubscriptionCard {...user} />
         <OrderInfo {...user} />

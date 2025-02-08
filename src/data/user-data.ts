@@ -137,6 +137,8 @@ export const sampleUsers : Users[] = [
       userName : "Joel_Marshall",
       email : "awasi@zar.kp",
       password : "jKUsCJtLzWAcw",
+      phoneNumber : 2063428631,
+      description : "Ad ex est officia fugiat minim anim do ex duis velit aute.",
       isMember : true,
       memberTier : sampleTier[0],
       payment : {
@@ -159,6 +161,8 @@ export const sampleUsers : Users[] = [
       userName : "Caroli.Mas",
       email : "ifmi@wor.rw",
       password : "xGMbrL9YK7Kb7Mlmxyg",
+      phoneNumber : 7175501675,
+      description : "Ut exercitation mollit ipsum dolor officia sint aute.",
       isMember : false,
       memberTier : sampleTier[3],
       payment : {
@@ -181,6 +185,8 @@ export const sampleUsers : Users[] = [
       userName : "MarkWade24",
       email : "dozkuf@medudcad.io",
       password : "h1uAnya",
+      phoneNumber : 2487620356,
+      description : "Est culpa irure eu aliquip sint.",
       isMember : false,
       memberTier : sampleTier[1],
       payment : {
