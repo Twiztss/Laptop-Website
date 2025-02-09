@@ -17,7 +17,7 @@ const CategoryOption = ({range1, range2} : any) => {
 
     const subCategory = (item : SubCategory) => {
       return (
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center" key={item.name}>
           <FolderArchive width={16} height={16} className="opacity-50"/>
           <p className="text-sm font-medium">{item.name}</p>
         </div>
@@ -52,7 +52,7 @@ const Filter = () => {
       <div className="flex flex-col gap-2">
         {options.map((index) => {
           return (
-            <div className="flex gap-2">
+            <div className="flex gap-2" key={index.label}>
               <input type="checkbox" name="" id="" />
               <p className="text-sm font-medium">{index.label}</p>
             </div>

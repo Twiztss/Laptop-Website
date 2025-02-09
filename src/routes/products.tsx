@@ -14,16 +14,16 @@ export default function Products() {
   const [filterInput, setFilterInput] = useState("")
   const [selected, setSelected] = useState(true)
 
-  const ProductCard = (prod : Product) => {
+  const ProductCard = (product : Product) => {
     return (
-      <div className="flex flex-col w-1/5 gap-4 rounded-lg shadow-md justify-between aspect-square">
+      <div className="flex flex-col w-1/5 gap-4 rounded-lg shadow-md justify-between aspect-square" key={product.title}>
         <div className="self-center w-full h-2/3 bg-gray-100 rounded-t-lg"></div>
         <div className="flex-col px-6 py-4 g-6">
           <h1 className="font-bold text-xl tracking-wider cursor-pointer">
-            <Link to={`/product/${prod.id + 1}`}>{prod.title}</Link>
+            <Link to={`/product/${product.id + 1}`}>{product.title}</Link>
           </h1>
-          <p className="text-gray-400 text-sm font-medium mb-2">{prod.description.length >= 20 ? prod.description.slice(0,20) + ". . ." : prod.description}</p>
-          <big className="text-xl text-slate-500 font-semibold">{prod.price} USD</big>
+          <p className="text-gray-400 text-sm font-medium mb-2">{product.description.length >= 20 ? product.description.slice(0,20) + ". . ." : product.description}</p>
+          <big className="text-xl text-slate-500 font-semibold">{product.price} USD</big>
         </div>
         <button className=""></button>
       </div>
@@ -32,13 +32,13 @@ export default function Products() {
 
   const tag = (tag : Category) => {
     return (
-      <p className="text-xs font-bold cursor-pointer">{tag.name}</p>
+      <p className="text-xs font-bold cursor-pointer" key={tag.name}>{tag.name}</p>
     )
   }
 
   const categoryRender = (tag : Category) => {
     return (
-      <div className="flex bg-gray-50 px-4 py-2 shadow-sm rounded-md justify-between items-center"> 
+      <div className="flex bg-gray-50 px-4 py-2 shadow-sm rounded-md justify-between items-center" key={tag.name}> 
         <p className="font-semibold cursor-pointer">{tag.name}</p>
         <div className="flex gap-4">
           <p className="rounded-full bg-gray-400 px-3 py-1 text-white font-medium text-sm">{tag.amount}</p>
@@ -52,7 +52,7 @@ export default function Products() {
 
   const selectedRender = (tag : Category) => {
     return (
-      <div className="flex bg-gray-300 text-sm font-semibold px-2 py-1 justify-between items-center gap-2">
+      <div className="flex bg-gray-300 text-sm font-semibold px-2 py-1 justify-between items-center gap-2" key={tag.name}>
         <p>{tag.name}</p>
         <XIcon onClick={() => selectTag(!selected)} width={12} height={12} className="cursor-pointer" />
       </div>
@@ -89,10 +89,10 @@ export default function Products() {
               <h3 className="text-md font-semibold mr-8">Filter by</h3>
             </div>
           </nav>
-          <div className="flex gap-6">
+          <div className="flex gap-6 w-full flex-wrap">
             {sampleProduct.map(ProductCard)}
           </div>
-          </section>
+        </section>
       </main>
       <Footer />
     </body>
