@@ -1,37 +1,51 @@
-import { Heart, Minus, Plus } from "lucide-react"
+import { Heart } from "lucide-react"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import { Product } from "../types/Product"
 import sampleProduct from "../data/product-data"
+import Navbar from "../components/Navbar"
+import { Product } from "../types/Product"
 
-const CartItem = (item : Product) => {
+interface itemProp {
+    title : string,
+    amount : number,
+    price : number,
+    onItemChange : (e : any) => void,
+    onRemoval : (e : any) => void,
+}
 
-    const [itemAmount, setItemAmount] = useState(1)
+type calcProp = {
+    item : number[]
+}
+
+const CartItem = ({title, amount, price, onItemChange, onRemoval} : itemProp) => {
 
     return (
         <>
             <div className="flex gap-6">
                 <div className="flex flex-col w-5/12 gap-4">
                     <div className="bg-gray-200 aspect-square"></div>
-                    <div className="flex justify-between">
-                        <div className="flex gap-4 border-2 border-gray-100 rounded-full px-4 py-2 items-center">
-                            <button onClick={() => {itemAmount == 1 ? setItemAmount(1) :setItemAmount(itemAmount - 1)}}><Minus width={16} height={16}/></button>
-                            <p className="font-medium">{itemAmount}</p>
-                            <button onClick={() => setItemAmount(itemAmount + 1)}><Plus width={16} height={16}/></button>
+                    <div className="flex justify-between w-full gap-2">
+                        <div className="flex gap-4 border-2 border-gray-100 rounded-full px-4 py-2 justify-center items-center w-2/3">
+                            <button name={title} id={"minus"} onClick={onItemChange}>-</button>
+                            <p className="font-medium">{amount}</p>
+                            <button name={title} id={"plus"} onClick={onItemChange}>+</button>
                         </div>
-                        <button className="border-2 border-gray-100 rounded-full p-4"><Heart width={16} height={16}/></button>
+                        <button className="flex justify-center border-2 border-gray-100 rounded-full p-4 w-1/3 items-center"><Heart width={16} height={16}/></button>
                     </div>
                 </div>
                 <div className="flex justify-between w-full mt-2">
                     <div>
-                        <h2 className="text-lg font-semibold">{item.title}</h2>
+                        <h2 className="text-lg font-semibold">{title}</h2>
                         <h4 className="text-base text-gray-500 font-normal">Magna sint do qui tempor culpa.</h4>
                         <h4 className="text-base text-gray-500 font-normal">{"Option 1"} / {"Option 2"}</h4>
                         <h4 className="text-base text-gray-500 font-normal">{"Option 3"} : {"Blank"}</h4>
                     </div>
-                    <p className="text-lg font-semibold">{(itemAmount * item.price).toFixed(2)} USD</p>
+                    <div className="flex flex-col justify-between">
+                        <p className="text-lg font-semibold">{(amount * price).toFixed(2)} USD</p>
+                        <button name={title} className="text-sm font-semibold p-4" onClick={onRemoval}>Remove Item</button>
+                    </div>
                 </div>
             </div>
             <hr className="w-full"/>
@@ -39,8 +53,10 @@ const CartItem = (item : Product) => {
     )
 }
 
-const Total = () => {
-    
+const Total = ({item} : calcProp) => {
+
+    const subTotal : number = Math.round(item.reduce((prev, cur) => prev + cur,0))
+
     return (
         <section className="flex flex-col gap-6 w-1/6 sticky">
             <h1 className="text-4xl font-bold">Total</h1>
@@ -48,7 +64,7 @@ const Total = () => {
                 <div className="flex flex-col gap-2 mt-4 w-full">
                     <div className="flex justify-between">
                         <h2 className="text-lg font-normal">Sub-Total</h2>
-                        <h2 className="text-lg font-normal">N/A</h2>
+                        <h2 className="text-lg font-normal">$ {subTotal}</h2>
                     </div>
                     <div className="flex justify-between">
                         <h2 className="text-lg font-normal">Additional Fees</h2>
@@ -57,7 +73,7 @@ const Total = () => {
                     <hr className="w-full my-4"/>
                     <div className="flex justify-between">
                         <h2 className="text-lg font-semibold">Total</h2>
-                        <h2 className="text-lg font-semibold">N/A</h2>
+                        <h2 className="text-lg font-semibold">$ {subTotal}</h2>
                     </div>
                     <hr className="w-full my-4"/>
                     <div className="flex flex-col w-full gap-4">
@@ -72,23 +88,58 @@ const Total = () => {
 
 export default function Cart() {
 
-    // Test item rendering
-    let haveItem = true
+    const [cartItem, setCartItem] = useState([...sampleProduct.slice(1,3)])
+    
+    const changeItem = (e : any) => {
+        const { name, id } = e.target
+        setCartItem((prev) => {
+            let thisItem : any = cartItem.find(item => item.title == name)
+            if (thisItem) {
+                const updatedCart = prev.map((item : Product) => {
+                    if (item.title == thisItem.title) {
+                        if (id == "plus") {
+                            return {...item, amount : item.amount + 1}
+                        } else if (id == "minus")
+                            return {...item, amount : item.amount - 1}
+                    } else {
+                        return item
+                    }
+                })
+                return updatedCart
+            } else {
+                return [...prev, {...thisItem, amount : thisItem.amount}]   
+            }
+        } )
+    }
+
+    const removeItem = (e : any) => {
+        const { name } = e.target
+        setCartItem(prev => {
+            return prev.filter(item => item.title != name)
+        })
+    }
 
     return (
     <body className="flex flex-col w-full h-screen justify-between">
         <Header />
-        <nav className="flex border-2 border-gray-100 w-full px-10 py-4 items-center justify-center">
-            <div className="flex w-1/2 justify-around">
-                <h4 className="font-bold text-sm">{"<<<< Promotional Content >>>>"}</h4>
-            </div>
-        </nav>
+        <Navbar />
         <main className="flex m-10 h-5/6 gap-10 justify-center overflow-y-scroll">
             <section className="flex flex-col gap-8 w-1/3">
                 <h1 className="text-4xl font-bold">Cart</h1>
-                {haveItem ? <>{sampleProduct.map(CartItem)}</> : <h4 className="text-lg font-semibold -mt-4">There is no item in your shopping cart.</h4>}
+                {cartItem.length != 0 ? <>{cartItem.map((item) => {
+                    return (
+                        <CartItem
+                            title={item.title}
+                            amount={item.amount}
+                            price={item.price}
+                            onItemChange={changeItem}
+                            onRemoval={removeItem}
+                            key={item.title}
+                        />
+                    )
+                })}</> : <h4 className="text-lg font-semibold -mt-4">There is no item in your shopping cart.</h4>}
             </section>
-            <Total />
+            <Total item={cartItem.map(item => item.amount * item.price)}/>
         </main>
         <Footer />
     </body>

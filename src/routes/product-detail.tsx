@@ -1,11 +1,10 @@
 import { Heart, ShoppingCart } from "lucide-react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { Category } from "../types/Catogory";
-import sampleCategory from "../data/category-data";
 import { Link, useParams } from "react-router-dom";
 import { Product, Version } from "../types/Product";
 import sampleProduct from "../data/product-data";
+import Navbar from "../components/Navbar";
 
 const InterestProduct = () => {
 
@@ -62,20 +61,10 @@ export default function ProductDetail() {
     )
   }
 
-  const tag = (tag : Category) => {
-    return (
-      <p className="text-xs font-bold cursor-pointer" key={tag.name}>{tag.name}</p>
-    )
-  }
-
   return (
     <body className="flex flex-col w-full h-screen justify-between">
         <Header />
-        <nav className="flex border-2 border-gray-100 w-full px-10 py-5 items-center justify-center">
-          <div className="flex w-1/2 justify-around">
-            {sampleCategory.map(tag)}
-          </div>
-        </nav>
+        <Navbar />
           <main className="flex flex-col mx-10 h-full max-w-full items-center overflow-y-scroll overflow-x-hidden">
             <div className="flex p-10 w-2/3 h-full">
               <div className="w-1/2 h-5/6 bg-gray-100 rounded-2xl"></div>

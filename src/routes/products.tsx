@@ -8,6 +8,7 @@ import { Product } from "../types/Product";
 import { Category } from "../types/Catogory";
 import {sampleCategory} from "../data/category-data";
 import sampleProduct from "../data/product-data";
+import Navbar from "../components/Navbar";
 
 export default function Products() {
   const [isFilter, setIsFilter] = useState(false)
@@ -27,12 +28,6 @@ export default function Products() {
         </div>
         <button className=""></button>
       </div>
-    )
-  }
-
-  const tag = (tag : Category) => {
-    return (
-      <p className="text-xs font-bold cursor-pointer" key={tag.name}>{tag.name}</p>
     )
   }
 
@@ -74,14 +69,10 @@ export default function Products() {
           {sampleCategory.map(categoryRender)}
         </div>
       </nav>
-      <nav className="flex border-2 border-gray-100 w-full px-10 py-5 items-center justify-center">
-        <div className="flex w-1/2 justify-around">
-          {sampleCategory.map(tag)}
-        </div>
-      </nav>
-      <main className="flex w-full h-full">
+      <Navbar />
+      <main className="flex w-full h-4/5">
         <Sidebar />
-        <section className="flex flex-col gap-6 m-10 w-4/5 overflow-y-scroll">
+        <section className="flex flex-col gap-6 mx-10 mt-10 w-5/6 h-full overflow-y-scroll">
           <nav className="flex justify-between">
             <h1 className="text-3xl font-bold">Products</h1>
             <div className="flex gap-2 cursor-pointer" onClick={() => setIsFilter(!isFilter)}>
