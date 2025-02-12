@@ -29,3 +29,12 @@ export interface MemberTier {
   price : number,
   benefits : string[],
 }
+
+export interface Review {
+  id : number,
+  user : string,
+  email : string,
+  title : string,
+  description : string,
+  score : number,
+}

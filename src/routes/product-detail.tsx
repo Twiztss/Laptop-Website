@@ -1,10 +1,50 @@
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, ShoppingCart, Star } from "lucide-react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Link, useParams } from "react-router-dom";
 import { Product, Version } from "../types/Product";
 import sampleProduct from "../data/product-data";
 import Navbar from "../components/Navbar";
+import { sampleReview } from "../data/review-data";
+import { Review } from "../types/Users";
+
+const Testimony = () => {
+
+  const TestimonyCard = (product : Review) => {
+    return (
+      <div className="flex flex-col w-1/5 gap-4 aspect-video p-6 shadow-md rounded-md" key={product.title}>
+        <div className="flex gap-4">
+          <div className="bg-gray-100 w-1/6 aspect-square rounded-full"></div>
+          <div className="flex-col gap-2">
+            <h1 className="font-bold text-xl cursor-pointer">
+              <Link to={`/product/${product.id + 1}`}>{product.user}</Link>
+            </h1>
+            <p className="text-gray-400 text-sm font-medium">{product.email}</p>
+          </div>
+        </div>
+        <div className="flex gap-2 items-center">
+          <Star width={24} height={24}/>
+          <h2 className="font-bold text-2xl">{product.score}/5</h2>
+        </div>
+        <div className="flex flex-col gap-1">
+          <h3 className="text-xl font-semibold">{product.title}</h3>
+          <p className="text-gray-400 text-md font-medium">{product.description}</p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <section className="flex flex-col m-10 gap-6 h-full w-full">
+      <h1 className="text-2xl font-bold">Customer Review</h1>
+      <p className="text-gray-400 text-lg font-semibold -mt-4">{sampleReview.reduce((prev, cur) => prev + (cur.score/sampleReview.length),0)} out of {sampleReview.length} reviews</p>
+      <div className="flex gap-6 w-full">
+          {sampleReview.slice(0,5).map(TestimonyCard)}
+      </div>
+    </section>
+
+  )
+}
 
 const InterestProduct = () => {
 
@@ -98,6 +138,7 @@ export default function ProductDetail() {
               </article>
             </div>
             <Thumbnail {...currentProduct} />
+            <Testimony />
             <InterestProduct />
           </main>
         <Footer />
