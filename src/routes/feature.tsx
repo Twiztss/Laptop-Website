@@ -1,6 +1,6 @@
 import Header from "../components/Header"
-import Footer from "../components/Footer"
 import { Compass, Computer, FastForward, InspectionPanel, Origami, Terminal } from "lucide-react"
+import FooterFull from "../components/FooterFull"
 
 const data : object[] = [
   {
@@ -107,7 +107,7 @@ export default function Feature() {
       <FeatureCard data = {data}/>
       <Sponsor />
 
-      <Footer />
+      <FooterFull />
     </body>
   )
 }
