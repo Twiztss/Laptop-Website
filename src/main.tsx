@@ -15,6 +15,7 @@ import Auth from './routes/auth'
 import Profile from './routes/Profile/profile'
 import Subscription from './routes/subscription'
 import OrderDetail from './routes/order-detail'
+import Checkout from './routes/checkout'
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
   {
     path : "order/:orderId",
     element : <OrderDetail />
+  },
+  {
+    path : "checkout",
+    element : <Checkout />
   },
 ])
 

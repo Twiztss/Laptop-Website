@@ -15,7 +15,7 @@ interface itemProp {
     onRemoval : (e : any) => void,
 }
 
-type calcProp = {
+export type calcProp = {
     item : number[]
 }
 
@@ -77,8 +77,8 @@ const Total = ({item} : calcProp) => {
                     </div>
                     <hr className="w-full my-4"/>
                     <div className="flex flex-col w-full gap-4">
-                        <button className="flex border-2 border-black w-full justify-center items-center px-8 py-4 rounded-full"><Link to={""} className="font-bold">Guest Checkout</Link></button>
-                        <button className="flex bg-black w-full justify-center items-center px-8 py-4 rounded-full"><Link to={""} className="text-white font-bold">Member Checkout</Link></button>
+                        <button className="flex border-2 border-black w-full justify-center items-center px-8 py-4 rounded-full"><Link to={"/checkout"} className="font-bold">Guest Checkout</Link></button>
+                        <button className="flex bg-black w-full justify-center items-center px-8 py-4 rounded-full"><Link to={"/checkout"} className="text-white font-bold">Member Checkout</Link></button>
                     </div>
                 </div>
             </div>
