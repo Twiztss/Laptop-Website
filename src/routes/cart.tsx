@@ -1,11 +1,12 @@
 import { Heart } from "lucide-react"
-import Footer from "../components/Footer"
-import Header from "../components/Header"
+import Footer from "../components/shared/Footer"
+import Header from "../components/shared/Header"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import sampleProduct from "../data/product-data"
-import Navbar from "../components/Navbar"
+import Navbar from "../components/shared/Navbar"
 import { Product } from "../types/Product"
+import Button from "../components/ui/Button"
 
 interface itemProp {
     title : string,
@@ -77,8 +78,8 @@ const Total = ({item} : calcProp) => {
                     </div>
                     <hr className="w-full my-4"/>
                     <div className="flex flex-col w-full gap-4">
-                        <button className="flex border-2 border-black w-full justify-center items-center px-8 py-4 rounded-full"><Link to={"/checkout"} className="font-bold">Guest Checkout</Link></button>
-                        <button className="flex bg-black w-full justify-center items-center px-8 py-4 rounded-full"><Link to={"/checkout"} className="text-white font-bold">Member Checkout</Link></button>
+                        <Button className="py-3 font-medium" type="secondary" onClick={() => console.log("Guess Checkout")}><Link to={"/checkout"} className="font-bold">Guest Checkout</Link></Button>
+                        <Button className="py-4 font-medium" type="primary" onClick={() => console.log("Member Checkout")}><Link to={"/checkout"} className="text-white font-bold">Member Checkout</Link></Button>
                     </div>
                 </div>
             </div>

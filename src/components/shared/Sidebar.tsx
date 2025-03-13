@@ -1,8 +1,8 @@
 import { BookOpenTextIcon, Box, CreditCard, Crown, FolderArchive, ShieldAlert, SidebarIcon, User } from "lucide-react"
 import CreatableSelect from "react-select/creatable";
 import makeAnimated from 'react-select/animated';
-import { sampleSubCategory } from "../data/category-data";
-import { SubCategory } from "../types/Catogory";
+import { sampleSubCategory } from "../../data/category-data";
+import { SubCategory } from "../../types/Catogory";
 import { useLocation } from "react-router-dom";
 
 const options = [
@@ -69,31 +69,31 @@ const ProfileOption = ({handleClick} : any) => {
       <div className="flex flex-col gap-2">
         <p className="font-semibold text-lg">User</p>
         <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
-          <User color="gray"/>
-          <p className="font-semibold text-xl text-gray-500">Accounts</p>
+          <User color="gray" width={20} height={20} />
+          <p className="font-semibold text-lg text-gray-500">Accounts</p>
         </div>
         <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Payment">
-          <CreditCard color="gray"/>
-          <p className="font-semibold text-xl text-gray-500">Payment Method</p>
+          <CreditCard color="gray" width={20} height={20} />
+          <p className="font-semibold text-lg text-gray-500">Payment Method</p>
         </div>
         <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Subscriptions">
-          <Crown color="gray"/>
-          <p className="font-semibold text-xl text-gray-500">Subscriptions</p>
+          <Crown color="gray" width={20} height={20} />
+          <p className="font-semibold text-lg text-gray-500">Subscriptions</p>
         </div>
         <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Orders">
-          <Box color="gray"/>
-          <p className="font-semibold text-xl text-gray-500">Orders</p>
+          <Box color="gray" width={20} height={20} />
+          <p className="font-semibold text-lg text-gray-500">Orders</p>
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <p className="font-semibold text-lg">Settings</p>
         <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
-          <BookOpenTextIcon color="gray"/>
-          <p className="font-semibold text-xl text-gray-500">Preferences</p>
+          <BookOpenTextIcon color="gray" width={20} height={20}/>
+          <p className="font-semibold text-lg text-gray-500">Preferences</p>
         </div>
         <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
-          <ShieldAlert color="gray"/>
-          <p className="font-semibold text-xl text-gray-500">Privacy</p>
+          <ShieldAlert color="gray" width={20} height={20} />
+          <p className="font-semibold text-lg text-gray-500">Privacy</p>
         </div>
       </div>
     </div>

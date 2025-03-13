@@ -1,11 +1,12 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../components/shared/Footer";
+import Header from "../components/shared/Header";
 import sampleCategory from "../data/category-data";
 import { Category } from "../types/Catogory";
 import { Invoice } from "../types/Payment";
 import { sampleInvoice } from "../data/user-data";
 import { Check, Headset, LucideTruck, MapPin, MonitorSpeaker, Timer, Truck } from "lucide-react";
 import { Product } from "../types/Product";
+import Button from "../components/ui/Button";
 
 const currentInvoice : Invoice = sampleInvoice[0]
 
@@ -16,18 +17,18 @@ const DeliveryStatus = () => {
           <Truck className="bg-white p-3 rounded-full" width={48} height={48}/>
           <h2 className="text-lg font-semibold">Your order has been delivered successfully!</h2>
           <div className="flex justify-between items-center">
-            <div className="flex bg-white px-4 py-2 rounded-full border-gray-200 border-2 gap-2 items-center w-1/4 justify-center">
-              <Truck />
-              <h3 className="font-semibold text-base">Delivery Address</h3>
+            <div className="flex bg-white px-4 py-2 rounded-full border-gray-200 border-2 gap-2 items-center w-1/3 justify-center">
+              <Truck width={20} height={20}/>
+              <h3 className="font-semibold text-sm">Delivery Address</h3>
             </div>
             <img src="/assets/img/arrow-dashed.png" className="aspect-video" width={75}/>
-            <div className="flex bg-white px-4 py-2 rounded-full border-gray-200 border-2 gap-2 items-center w-1/4 justify-center">
-              <MapPin />
-              <h3 className="font-semibold text-base">Billing Address</h3>
+            <div className="flex bg-white px-4 py-2 rounded-full border-gray-200 border-2 gap-2 items-center w-1/3 justify-center">
+              <MapPin width={20} height={20} />
+              <h3 className="font-semibold text-sm">Billing Address</h3>
             </div>
           </div>
           <div className="bg-white rounded-full w-full">
-            <div className="bg-slate-500 sticky rounded-full w-full p-2"></div>
+            <div className="bg-gray-700 sticky rounded-full w-full p-2"></div>
           </div>
       </div>
       <div className="flex w-1/2 justify-between gap-4">
@@ -88,14 +89,14 @@ const PriceSummary = () => {
       <div className="flex gap-4 self-center w-full justify-between items-center">
         <p className="text-md font-medium text-gray-400 italic">Thank you for your purchase!</p>
         <div className="flex gap-4">
-          <button className="flex gap-2 items-center bg-black px-4 py-1 rounded-full">
+          <Button type="primary" className="">
             <Headset color="white" width={16} height={16} />
             <p className="font-medium text-sm text-white">Contact Support</p>
-          </button>
-          <button className="flex gap-4 items-center px-4 py-1 border-black border-2 rounded-full">
+          </Button>
+          <Button type="secondary" className="">
             <MonitorSpeaker width={16} height={16} />
             <p className="font-medium text-sm">Report a problem</p>
-          </button>
+          </Button>
         </div>
       </div>
     </>

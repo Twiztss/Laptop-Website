@@ -1,8 +1,9 @@
-import Footer from "../components/Footer"
-import Header from "../components/Header"
+import Footer from "../components/shared/Footer"
+import Header from "../components/shared/Header"
 import { calcProp } from "./cart"
 import sampleProduct from "../data/product-data"
 import { useState } from "react"
+import Button from "../components/ui/Button"
 
 const StepData = [
     { id : 1, description : "Contact Information" },
@@ -12,7 +13,7 @@ const StepData = [
 
 const Step = ({ step, id }  : any) => {
     return (
-        <div className={`${step + 1 >= id ? "bg-red-400" : "bg-gray-600"} flex items-center px-4 py-2 rounded-full text-white font-bold`}>
+        <div className={`${step + 1 >= id ? "bg-black" : "bg-gray-600"} flex items-center px-4 py-2 rounded-full text-white font-bold`}>
             <p>{id}</p>
         </div>
     )
@@ -55,30 +56,30 @@ const PaymentForm = () => {
       }
 
     return (
-        <div className="flex flex-col gap-4 w-5/6">
-        <div className="flex gap-4 w-full">
-          <div className="flex flex-col gap-2 justify-center w-1/2">
-            <p className="font-semibold text-lg">First Name</p>
-            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={userInput.firstName} required />
-          </div>
-          <div className="flex flex-col justify-center gap-2 w-1/2">
-            <p className="font-semibold text-lg">Last Name</p>
-            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="lastName" value={userInput.lastName} required />
-          </div>
-        </div>
-        <div className="flex flex-col justify-center gap-2 w-full">
-          <p className="font-semibold text-lg">Email</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={userInput.email} required />
-        </div>
-        <div className="flex flex-col justify-center gap-2 w-full">
-          <p className="font-semibold text-lg">Phone Number</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={userInput.phoneNumber} />
-        </div>
-        <div className="flex flex-col justify-center gap-2 w-full">
-          <p className="font-semibold text-lg">Message</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={userInput.message} required />
-        </div>
-      </div>
+        <section className="flex flex-col gap-4 w-5/6">
+            <div className="flex gap-4 w-full">
+                <div className="flex flex-col justify-center gap-1">
+                    <p className="font-semibold text-lg">First Name</p>
+                    <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400 w-full" id="firstName" value={userInput.firstName} required />
+                </div>
+                <div className="flex flex-col justify-center gap-1">
+                    <p className="font-semibold text-lg">Last Name</p>
+                    <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400 w-full" id="lastName" value={userInput.lastName} required />
+                </div>
+            </div>
+            <div className="flex flex-col justify-center gap-1 w-full">
+                <p className="font-semibold text-lg">Email</p>
+                <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={userInput.email} required />
+            </div>
+            <div className="flex flex-col justify-center gap-1">
+                <p className="font-semibold text-lg">Phone Number</p>
+                <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={userInput.phoneNumber} />
+            </div>
+            <div className="flex flex-col justify-center w-full gap-1">
+                <p className="font-semibold text-lg">Message</p>
+                <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={userInput.message} required />
+            </div>
+      </section>
     )
 }
 
@@ -147,8 +148,8 @@ export default function Checkout () {
                     <div className="flex flex-col gap-6 overflow-y-scroll">
                         <PaymentForm />
                         <div className="flex gap-4">
-                            <button onClick={handleStep} className="flex justify-center items-center px-4 py-2 rounded-full border-black border-2 w-1/6 font-semibold" name="back">Back</button>
-                            <button onClick={handleStep} className="flex justify-center items-center px-4 py-2 rounded-full bg-black text-white w-1/6 font-semibold" name="next">Next</button>
+                            <Button name="back" onClick={handleStep} className="w-1/6" type="secondary">Back</Button>
+                            <Button name="next" onClick={handleStep} className="w-1/6" type="primary">Next</Button>
                         </div>
                     </div>
                 </section>

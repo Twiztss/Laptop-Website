@@ -1,6 +1,7 @@
-import Header from "../components/Header"
+import Header from "../components/shared/Header"
 import { ArrowRight, Compass, Computer, FastForward, InspectionPanel, Origami, Terminal } from "lucide-react"
-import FooterFull from "../components/FooterFull"
+import FooterFull from "../components/shared/FooterFull"
+import Button from "../components/ui/Button"
 
 const data : object[] = [
   {
@@ -80,10 +81,10 @@ const Feature2Card = (feature : featureProps) => {
       <div className="flex flex-col justify-center gap-4">
         <h1 className="font-bold text-4xl">{feature.name + ".1"}</h1>
         <p className="font-normal text-lg">{feature.description.length > 40 ? feature.description.slice(0,40) : feature.description}</p>
-        <button className="bg-gray-200 rounded-full px-4 py-2 w-1/4 flex gap-2 justify-center items-center">
-          <p className="font-bold text-lg">Explore</p>
+        <Button className="self-start bg-gray-300 px-6">
+          <p className="font-semibold text-base">Explore</p>
           <ArrowRight width={16} height={16} />
-        </button>
+        </Button>
       </div>
     </article>
   )
@@ -126,8 +127,8 @@ export default function Feature() {
           <h1 className="text-center text-6xl font-bold tracking-wider">Features</h1>
           <p className="text-center font-normal text-gray-700 text-lg w-5/12">Feature description describing how good the product actually is within few sentences captivating potential customers  .</p>
           <div className="flex gap-4">
-            <button className="bg-gray-700 text-white px-8 py-3 rounded-full font-medium">Register</button>
-            <button className="border-gray-700 border-solid border-2 r py-3 px-8 rounded-full font-medium">Explore</button>
+            <Button className="px-8 py-3" type="primary">Register</Button>
+            <Button className="px-8 py-3" type="secondary">Explore</Button>
           </div>
         </div>  
       </section>

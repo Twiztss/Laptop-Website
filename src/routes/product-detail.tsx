@@ -1,10 +1,10 @@
 import { Heart, ShoppingCart, Star } from "lucide-react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../components/shared/Footer";
+import Header from "../components/shared/Header";
 import { Link, useParams } from "react-router-dom";
 import { Product, Version } from "../types/Product";
 import sampleProduct from "../data/product-data";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/shared/Navbar";
 import { sampleReview } from "../data/review-data";
 import { Review } from "../types/Users";
 

@@ -1,5 +1,5 @@
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import FooterFull from "../components/shared/FooterFull";
+import Header from "../components/shared/Header";
 
 const data = [
   {
@@ -31,7 +31,8 @@ export default function HowToUse() {
       <div className="flex flex-col gap-6 w-full" key = {data.step}>
           <div className="bg-gray-400 rounded-full w-10 h-10 text-white flex items-center justify-center font-bold">{data.id + 1}</div>
           <h1 className="text-3xl font-bold">{data.step}</h1>
-          <p className="font-normal text-lg text-gray-300">{data.stepInfo}</p>
+          <p className="font-normal text-md text-gray-400">{data.stepInfo}</p>
+          <div className="bg-gray-100 w-full self-center aspect-[3.75]"></div>
       </div>
     )
   }
@@ -44,7 +45,7 @@ export default function HowToUse() {
         <p className="text-gray-400 font-semibold self-center"></p>
         {data.map(renderInstruction)}
       </section>
-      <Footer />
+      <FooterFull />
     </main>
   )
 }

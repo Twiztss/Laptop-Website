@@ -1,14 +1,14 @@
 import { useState } from "react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../components/shared/Footer";
+import Header from "../components/shared/Header";
 import { FilterIcon, Plus, XIcon } from "lucide-react"
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/shared/Sidebar";
 import { Link } from "react-router-dom";
 import { Product } from "../types/Product";
 import { Category } from "../types/Catogory";
 import {sampleCategory} from "../data/category-data";
 import sampleProduct from "../data/product-data";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/shared/Navbar";
 
 export default function Products() {
   const [isFilter, setIsFilter] = useState(false)

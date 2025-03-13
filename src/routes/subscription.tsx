@@ -1,6 +1,6 @@
 import { CrownIcon } from "lucide-react";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Footer from "../components/shared/Footer";
+import Header from "../components/shared/Header";
 import { MemberTier } from "../types/Users";
 import { sampleTier } from "../data/user-data";
 

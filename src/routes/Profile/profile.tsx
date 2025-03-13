@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
+import Footer from "../../components/shared/Footer";
+import Header from "../../components/shared/Header";
+import Sidebar from "../../components/shared/Sidebar";
 import sampleCategory from "../../data/category-data";
 import { Category } from "../../types/Catogory";
 import { sampleUsers } from "../../data/user-data";

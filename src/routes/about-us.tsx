@@ -1,18 +1,19 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/shared/Header";
 import { useState } from "react";
 import { Headphones, Mail, MessageCircle , PhoneCall, VideoIcon, SpeechIcon, Map } from "lucide-react";
 import { Staffs } from "../types/Users";
 import { sampleStaffs } from "../data/user-data";
+import Button from "../components/ui/Button";
+import FooterFull from "../components/shared/FooterFull";
 
 const ContactForm = () => {
 
   const [userInput, setUserInput] = useState({
-    firstName : "First Name",
-    lastName : "Last Name",
-    email : "Email",
-    phoneNumber : "+1(555) 000-0000",
-    message : "Leave us a message",
+    firstName : "",
+    lastName : "",
+    email : "",
+    phoneNumber : "",
+    message : "",
   })
 
   const handleChange = (e : any) => {
@@ -65,26 +66,26 @@ const ContactForm = () => {
         <div className="flex gap-4 w-full">
           <div className="flex flex-col gap-2 justify-center w-1/2">
             <p className="font-semibold text-lg">First Name</p>
-            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={userInput.firstName} required />
+            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={userInput.firstName} placeholder="First Name" required />
           </div>
           <div className="flex flex-col justify-center gap-2 w-1/2">
             <p className="font-semibold text-lg">Last Name</p>
-            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="lastName" value={userInput.lastName} required />
+            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="lastName" value={userInput.lastName} placeholder="Last Name" required />
           </div>
         </div>
         <div className="flex flex-col justify-center gap-2 w-full">
           <p className="font-semibold text-lg">Email</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={userInput.email} required />
+          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={userInput.email} placeholder="example@mail.com" required />
         </div>
         <div className="flex flex-col justify-center gap-2 w-full">
           <p className="font-semibold text-lg">Phone Number</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={userInput.phoneNumber} />
+          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={userInput.phoneNumber} placeholder="+1(555) 000-0000" />
         </div>
         <div className="flex flex-col justify-center gap-2 w-full">
           <p className="font-semibold text-lg">Message</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={userInput.message} required />
+          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={userInput.message} placeholder="Your message to us." required />
         </div>
-        <button type="submit" className="flex items-center bg-black text-white font-semibold px-8 py-4 rounded-full justify-center mt-4">Send Message</button>
+        <Button type="primary" className="py-3 mt-4">Send Message</Button>
       </div>
     </section>
   )
@@ -113,8 +114,8 @@ export default function AboutUs() {
             <h1 className="text-5xl font-bold">We are the team dedicate in developments of electronics.</h1>
             <p className="text-lg font-normal text-gray-700 self-center w-2/3">Our staffs are able to consult and provide supports regarding maintenance and building components at reasonable price.</p>
             <div className="flex gap-4 justify-center">
-              <button className="flex gap-2 items-center bg-black text-white px-8 py-3 rounded-full font-semibold"><VideoIcon width={24} height={24}/>Book a call.</button>
-              <button className="flex gap-2 items-center border-2 border-black px-8 py-3 rounded-full font-semibold"><Headphones width={24} height={24}/>Contact Us.</button>
+              <Button type="primary" className="px-8 py-3"><VideoIcon width={24} height={24}/>Book a call.</Button>
+              <Button type="secondary" className="px-8 py-3"><Headphones width={24} height={24}/>Contact Us.</Button>
             </div>
           </div>
         </section>
@@ -128,7 +129,7 @@ export default function AboutUs() {
           <ContactForm />
         </section>
       </body>
-      <Footer />
+      <FooterFull />
     </main>
   )
 }

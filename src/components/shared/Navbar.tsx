@@ -1,5 +1,5 @@
-import sampleCategory from "../data/category-data"
-import { Category } from "../types/Catogory"
+import sampleCategory from "../../data/category-data"
+import { Category } from "../../types/Catogory"
 
 export default function Navbar() {
 
