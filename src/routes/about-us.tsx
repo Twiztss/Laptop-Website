@@ -1,107 +1,90 @@
 import Header from "../components/shared/Header";
-import { useState } from "react";
 import { Headphones, Mail, MessageCircle , PhoneCall, VideoIcon, SpeechIcon, Map } from "lucide-react";
 import { Staffs } from "../types/Users";
 import { sampleStaffs } from "../data/user-data";
 import Button from "../components/ui/Button";
 import FooterFull from "../components/shared/FooterFull";
+import Form from "../components/ui/Forms";
 
 const ContactForm = () => {
 
-  const [userInput, setUserInput] = useState({
-    firstName : "",
-    lastName : "",
-    email : "",
-    phoneNumber : "",
-    message : "",
-  })
-
-  const handleChange = (e : any) => {
-    const { id, value } = e.target 
-    setUserInput((userInput : any) => ({...userInput,
-      [id] : value
-    })
-    )
-  }
-
   return (
-    <section className="flex gap-10 justify-center w-3/4 mt-10">
-      <div className="flex flex-col w-1/2 gap-8">
+    <section className="flex md:flex-row flex-col gap-10 justify-center md:w-3/4 w-full mt-10">
+      <div className="flex flex-col md:justify-start justify-center md:w-1/2 w-full gap-8">
         <div className="flex flex-col w-full gap-2">
-          <h2 className="text-xl font-semibold">Call Us</h2>
+          <h4 className="text-lg font-semibold">Call Us</h4>
           <p className="text-md font-normal text-gray-600">Call our support team 24/7.</p>
           <div className="flex gap-2 items-center">
-            <PhoneCall width={16} height={16} />
-            <h4 className="text-lg font-semibold">571283-18-0248</h4>
+            <PhoneCall width={16} height={16} color="darkgray" />
+            <h5 className="text-base font-semibold text-gray-700">571283-18-0248</h5>
           </div>
         </div>
         <div className="flex flex-col w-full gap-2">
-          <h4 className="text-xl font-semibold">Chat with Us</h4>
+          <h4 className="text-lg font-semibold">Chat with Us</h4>
           <p className="text-md font-normal text-gray-600">Speak directly with our support specialist,</p>
           <div className="flex flex-col gap-1 items-start">
             <button className="text-lg font-semibold flex gap-2 items-center">
-              <MessageCircle width={16} height={16} />
-              <p>Start a live chat.</p>
+              <MessageCircle width={16} height={16} color="darkgray" />
+              <h5 className="text-base font-semibold text-gray-700">Start a live chat.</h5>
             </button>
             <button className="text-lg font-semibold flex gap-2 items-center">
-              <Mail width={16} height={16}/>
-              <p>Sent us an email.</p>
+              <Mail width={16} height={16} color="darkgray" />
+              <h5 className="text-base font-semibold text-gray-700">Sent us an email.</h5>
             </button>
             <button className="text-lg font-semibold flex gap-2 items-center">
-              <SpeechIcon width={16} height={16} />
-              <p>Message us on social media.</p>
+              <SpeechIcon width={16} height={16} color="darkgray" />
+              <h5 className="text-base font-semibold text-gray-700">Message us on social media.</h5>
             </button>
           </div>
         </div>
         <div className="flex flex-col w-full gap-2">
-          <h4 className="text-xl font-semibold">Visit us</h4>
+          <h4 className="text-lg font-semibold">Visit us</h4>
           <p className="text-md font-normal text-gray-600">Our store located at Singapore around the block.</p>
           <button className="text-md font-semibold flex gap-2 items-center">
-              <Map width={16} height={16} />
-              <p>Sindo Building 66 Tannery Lane #01-04a</p>
+              <Map width={16} height={16} color="darkgray" />
+              <h5 className="text-base font-semibold text-gray-700">Sindo Building 66 Tannery Lane #01-04a</h5>
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-4 w-5/6">
-        <div className="flex gap-4 w-full">
-          <div className="flex flex-col gap-2 justify-center w-1/2">
-            <p className="font-semibold text-lg">First Name</p>
-            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="firstName" value={userInput.firstName} placeholder="First Name" required />
-          </div>
-          <div className="flex flex-col justify-center gap-2 w-1/2">
-            <p className="font-semibold text-lg">Last Name</p>
-            <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="lastName" value={userInput.lastName} placeholder="Last Name" required />
-          </div>
-        </div>
-        <div className="flex flex-col justify-center gap-2 w-full">
-          <p className="font-semibold text-lg">Email</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="email" value={userInput.email} placeholder="example@mail.com" required />
-        </div>
-        <div className="flex flex-col justify-center gap-2 w-full">
-          <p className="font-semibold text-lg">Phone Number</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="phoneNumber" value={userInput.phoneNumber} placeholder="+1(555) 000-0000" />
-        </div>
-        <div className="flex flex-col justify-center gap-2 w-full">
-          <p className="font-semibold text-lg">Message</p>
-          <input onChange={handleChange} type="text" className="border-2 border-gray-200 rounded-md p-2 text-gray-400" id="message" value={userInput.message} placeholder="Your message to us." required />
-        </div>
-        <Button type="primary" className="py-3 mt-4">Send Message</Button>
-      </div>
+      <Form />
     </section>
   )
 }
 
 export default function AboutUs() {
 
-  const Profile = (data : Staffs) => {
-      return (
-        <div className="flex flex-col gap-2 w-1/6 aspect-square shadow-md bg-gray-100 items-center justify-end p-5" key = {data.userId ? data.userId : ""}>
-            <div className="flex flex-col gap-2 bg-white justify-self-center px-4 py-3 w-full">
-              <h1 className="text-lg font-bold">{data.name ? data.name : ""}</h1>
-              <p className="text-gray-400 font-normal -mt-2">{data.role ? data.role : ""}</p>
-            </div>
+  const Profile = (data: Staffs) => {
+    return (
+      <div
+        className="group relative overflow-hidden rounded-lg bg-white shadow-md transition-all hover:shadow-lg sm:w-full md:w-full"
+        key={data.userId ?? ""}
+      >
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+  
+        {/* Profile content */}
+        <div className="aspect-square w-full bg-gray-100">
+          {/* If there's an image, display it */}
+          {data.imageUrl ? (
+            <img
+              src={data.imageUrl || "/placeholder.svg"}
+              alt={data.name ?? "Staff member"}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="bg-gray-100 aspect-square w-full"></div>
+          ) }
+        </div>
+  
+        {/* Info section */}
+        <div className="absolute bottom-0 w-full transform transition-transform duration-300 group-hover:translate-y-0">
+          <div className="bg-white p-4">
+            <h3 className="text-lg font-bold text-gray-900 line-clamp-1">{data.name ?? ""}</h3>
+            <p className="text-sm text-gray-500">{data.role ?? ""}</p>
           </div>
-      )
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -110,8 +93,8 @@ export default function AboutUs() {
       {/* Overview, Please render later thanks */}
       <body className="flex flex-col p-10 gap-10">
         <section className="flex justify-center items-center py-10">
-          <div className="flex flex-col gap-8 w-1/2 mx-10 text-center">
-            <h1 className="text-5xl font-bold">We are the team dedicate in developments of electronics.</h1>
+          <div className="flex flex-col gap-8 md:w-1/2 w-full mx-10 text-center">
+            <h1 className="md:text-5xl text-4xl font-bold">We are the team dedicate in developments of electronics.</h1>
             <p className="text-lg font-normal text-gray-700 self-center w-2/3">Our staffs are able to consult and provide supports regarding maintenance and building components at reasonable price.</p>
             <div className="flex gap-4 justify-center">
               <Button type="primary" className="px-8 py-3"><VideoIcon width={24} height={24}/>Book a call.</Button>
@@ -119,13 +102,15 @@ export default function AboutUs() {
             </div>
           </div>
         </section>
-        <section className="flex flex-col items-center gap-8 mt-10">
-          <h2 className="text-3xl font-bold">Key Members</h2>
-          <div className="flex flex-cols w-full justify-center gap-8">
-            {sampleStaffs.map(Profile)}
+        <section className="container mx-auto px-4 py-12">
+          <h1 className="mb-12 text-center text-3xl font-bold">Our Member</h1>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {sampleStaffs.map((staff) => (
+              <Profile key={staff.userId} {...staff} />
+            ))}
           </div>
         </section>
-        <section className="flex flex-col w-full items-center mt-10">
+        <section className="flex flex-col w-full items-center">
           <ContactForm />
         </section>
       </body>

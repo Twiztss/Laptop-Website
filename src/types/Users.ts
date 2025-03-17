@@ -7,6 +7,7 @@ export interface Staffs {
     email : string,
     phoneNumber : string,
     hasAccess : boolean,
+    imageUrl? : string,
   }
 
 export interface Users {

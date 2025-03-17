@@ -121,14 +121,6 @@ export const sampleStaffs : Staffs[] = [
       phoneNumber : "http://ihfaw.cd/vaika",
       hasAccess : true,
     },
-    {
-      userId : 4,
-      name : "Wesley Byrd",
-      role : "Electronic Specialists",
-      email : "http://mamo.ca/liv",
-      phoneNumber : "http://ihfaw.cd/vaika",
-      hasAccess : false,
-    },
   ]
 
 export const sampleUsers : Users[] = [

@@ -13,9 +13,9 @@ const options = [
   { value: 'misc', label: 'Misc' },
 ]
 
-const CategoryOption = ({range1, range2} : any) => {
+const CategoryOption = () => {
 
-    const subCategory = (item : SubCategory) => {
+    const subCategoryMenu = (item : SubCategory) => {
       return (
         <div className="flex gap-2 items-center" key={item.name}>
           <FolderArchive width={16} height={16} className="opacity-50"/>
@@ -24,12 +24,22 @@ const CategoryOption = ({range1, range2} : any) => {
       )
     }
 
+    const subCategory = (item : SubCategory[]) => {
+      return (
+        <div className="flex flex-col gap-1" key={item[0].name}>
+          <h3 className="text-sm font-semibold">{item[0].name}</h3>
+          <div className="flex flex-col gap-1">
+            {item.slice(1).map(subCategoryMenu)}
+          </div>
+        </div>
+      )
+    }
+
     return (
         <div className="flex flex-col gap-2">
-            <h2 className="text-sm text-gray-500">Category {range1}</h2>
-            <div className="flex flex-col gap-1">
-              {sampleSubCategory.slice(range1,range2).map(subCategory)}
-            </div>
+          <div className="flex flex-col gap-2">
+            {sampleSubCategory.slice(0,3).map(subCategory)}
+          </div>
         </div>  
     )
 }
@@ -117,8 +127,7 @@ export default function Sidebar({ handleClick } : any) {
             <SidebarIcon color="gray" className="cursor-pointer"/>
           </div>
           <hr className="border-1"/>
-          <CategoryOption range1={0} range2={4} />
-          <CategoryOption range1={4} range2={8} />
+          <CategoryOption />
           <Filter />
         </section>
       )
