@@ -68,21 +68,21 @@ const AddressCard = ( address : Address ) => {
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Country</p>
+                    <p className="text-lg font-semibold">Country</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"country"} value={currentAddress.country} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Address</p>
+                    <p className="text-lg font-semibold">Address</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"address1"} value={currentAddress.address1} onChange={handleChange}/>
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">City/State</p>
+                    <p className="text-lg font-semibold">City/State</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"state"} value={currentAddress.state} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Postal Code</p>
+                    <p className="text-lg font-semibold">Postal Code</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"postal"} value={currentAddress.postal} onChange={handleChange} />
                 </div>
             </div>
@@ -110,7 +110,7 @@ const PaymentCard = (user : Users ) => {
     const PaymentHistory = () => {
         return (
             <div className="flex flex-col w-full gap-4">
-                <p className="font-medium text-lg ">Billing History</p>
+                <p className="text-lg font-semibold ">Billing History</p>
                 <hr />
                 <div className="flex flex-col gap-4">
                     <div className="flex justify-between items-center w-full -mb-2 mt-2">
@@ -204,10 +204,10 @@ const PaymentCard = (user : Users ) => {
                     <p className="font-semibold text-md text-gray-400">Edit</p>
                 </button>
             </div>
-            <p className="font-semibold text-md text-gray-300 -mt-6">View and update your payments.</p>
+            <p className="font-medium text-md text-gray-400 -mt-6">View and update your payments.</p>
             <div className="flex w-full gap-16">
                 <div className="flex flex-col w-1/3 gap-2">
-                    <p className="font-medium text-lg ">Payment Option</p>
+                    <p className="text-lg font-semibold ">Payment Option</p>
                     <CreatableSelect
                         className="basic-single"
                         classNamePrefix="select"
@@ -262,30 +262,30 @@ const InfoCard = (user : Users) => {
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Username</p>
-                    <input className="text-lg font-semibold text-gray-400 outline-none" name={"userName"} value={userInfo.userName} placeholder={user.userName} onChange={handleChange} />
+                    <p className="text-lg font-semibold">Username</p>
+                    <input className="text-lg font-medium text-gray-400 outline-none" name={"userName"} value={userInfo.userName} placeholder={user.userName} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">User ID</p>
+                    <p className="text-lg font-semibold">User ID</p>
                     <div className="flex items-center gap-6 w-1/2">
-                        <input className="text-lg font-semibold text-gray-400 w-full outline-none" name={"userId"} value={isDisplayed ? userInfo.userId : "Hidden"} onChange={handleChange}/>
+                        <input className="text-lg font-medium text-gray-400 w-full outline-none" name={"userId"} value={isDisplayed ? userInfo.userId : "Hidden"} onChange={handleChange}/>
                         {isDisplayed ? <EyeIcon width={16} height={16} onClick={() => setIsDisplayed(!isDisplayed)}/> : <EyeClosed width={16} height={16} onClick={() => setIsDisplayed(!isDisplayed)} />}
                     </div>
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Email Address</p>
+                    <p className="text-lg font-semibold">Email Address</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"email"} value={userInfo.email} onChange={handleChange} />
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Phone Number</p>
+                    <p className="text-lg font-semibold">Phone Number</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"phoneNumber"} value={userInfo.phoneNumber} onChange={handleChange} />
                 </div>
             </div>
             <div className="flex w-1/2 justify-between">
                 <div className="flex flex-col gap-2 w-full">
-                    <p className="font-medium text-lg">Description</p>
+                    <p className="text-lg font-semibold">Description</p>
                     <input className="text-lg font-semibold text-gray-400 outline-none" name={"description"} value={userInfo.description} onChange={handleChange} />
                 </div>
             </div>
@@ -311,7 +311,7 @@ const SubscriptionCard = ( user : Users ) => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 w-1/2">
-                    <p className="font-medium text-lg">Next Payment</p>
+                    <p className="text-lg font-semibold">Next Payment</p>
                     <h3 className="text-lg font-semibold text-gray-400">{(date.getMonth()) + "/" + (date.getDay()) + "/" + date.getFullYear()}</h3>
                     <div className="flex items-center gap-2">
                         <IdCard />
@@ -391,7 +391,7 @@ const OrderInfo = (user : Users, invoice : Invoice) => {
                 <h1 className="font-bold text-2xl">Order</h1>
             </div>
             <div className="flex flex-col w-full gap-6">
-                <p className="font-medium text-lg ">Billing History</p>
+                <p className="text-lg font-semibold ">Billing History</p>
                 <p className="text-base text-gray-400 -mt-6">Review and track your order here.</p>
                 <input type="text" value={"Search"} className="text-gray-400 rounded-lg px-4 py-2 border-2 border-gray-100 w-1/3" />
                 <div className="flex flex-col gap-4">

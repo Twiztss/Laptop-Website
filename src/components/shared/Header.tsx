@@ -29,7 +29,7 @@ export default function Header() {
         </button>
 
         {/* Desktop navigation */}
-        <nav className="hidden md:block">
+        <nav className="hidden md:hidden lg:block">
           <ul className="flex gap-6">
             {navLinks.map((link) => (
               <li key={link.to}>

@@ -22,7 +22,8 @@ export default function Navbar() {
             <li key={category.id} className="relative">
               <button
                 className="flex items-center gap-1 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900"
-                onClick={() => toggleDropdown(category.id)}
+                onMouseEnter={() => toggleDropdown(category.id)}
+                onMouseLeave={() => toggleDropdown(category.id)}
                 aria-expanded={activeDropdown === category.id}
                 aria-controls={`dropdown-${category.id}`}
               >
