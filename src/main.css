@@ -2,23 +2,136 @@
 @tailwind components;
 @tailwind utilities;
 
-/* width */
+/* Custom utilities */
+@layer utilities {
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 8px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+  background: #f1f1f1;
+  border-radius: 4px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
+  background: #c1c1c1;
+  border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #a8a8a8;
+}
+
+/* Focus styles */
+*:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Category tag styling to ensure proper display */
+.category-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.category-text-laptops {
+  color: #1d4ed8;
+}
+
+.category-text-monitors {
+  color: #dc2626;
+}
+
+.category-text-software {
+  color: #15803d;
+}
+
+.category-text-components {
+  color: #d97706;
+}
+
+.category-text-accessories {
+  color: #7c3aed;
+}
+
+/* Specific category colors */
+.category-laptops {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.category-monitors {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.category-software {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.category-components {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.category-accessories {
+  background-color: #f3e8ff;
+  color: #7c3aed;
 }

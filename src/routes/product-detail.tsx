@@ -1,147 +1,317 @@
-import { Heart, ShoppingCart, Star } from "lucide-react";
+import { Heart, ShoppingCart, Star, ArrowLeft } from "lucide-react";
 import Footer from "../components/shared/Footer";
 import Header from "../components/shared/Header";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { Product, Version } from "../types/Product";
 import sampleProduct from "../data/product-data";
 import Navbar from "../components/shared/Navbar";
 import { sampleReview } from "../data/review-data";
 import { Review } from "../types/Users";
+import { useState, useEffect } from "react";
+import { ProductDetailSkeleton, ReviewCardSkeleton, ProductCardSkeleton } from "../components/ui/Skeleton";
+import { getCategoryStyle } from "../utils/style";
 
 const Testimony = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const reviews = sampleReview.slice(0, Math.random() * 10)
 
-  const TestimonyCard = (product : Review) => {
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const TestimonyCard = (product: Review) => {
+    // Generate star rating display
+    const renderStars = (score: number) => {
+      return Array.from({ length: 5 }, (_, index) => (
+        <Star 
+          key={index} 
+          size={16} 
+          className={index < score ? "text-yellow-400 fill-current" : "text-gray-300"} 
+        />
+      ));
+    };
+
     return (
-      <div className="flex flex-col w-1/5 gap-4 aspect-video p-6 shadow-md rounded-md" key={product.title}>
+      <div className="flex flex-col bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 space-y-4" key={product.title}>
         <div className="flex gap-4">
-          <div className="bg-gray-100 w-1/6 aspect-square rounded-full"></div>
-          <div className="flex-col gap-2">
-            <h1 className="font-bold text-xl cursor-pointer">
-              <Link to={`/product/${product.id + 1}`}>{product.user}</Link>
-            </h1>
-            <p className="text-gray-400 text-sm font-medium">{product.email}</p>
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full flex items-center justify-center text-blue-600 font-semibold text-lg">
+            {product.user.split(' ').map(n => n[0]).join('').toUpperCase()}
+          </div>
+          <div className="flex-1 space-y-1">
+            <h3 className="font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+              {product.user}
+            </h3>
+            <p className="text-gray-500 text-xs">{product.email}</p>
           </div>
         </div>
         <div className="flex gap-2 items-center">
-          <Star width={24} height={24}/>
-          <h2 className="font-bold text-2xl">{product.score}/5</h2>
+          <div className="flex gap-1">
+            {renderStars(product.score)}
+          </div>
+          <span className="text-sm text-gray-600 ml-2">{product.score}/5</span>
         </div>
-        <div className="flex flex-col gap-1">
-          <h3 className="text-xl font-semibold">{product.title}</h3>
-          <p className="text-gray-400 text-md font-medium">{product.description}</p>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-gray-900 line-clamp-1">{product.title}</h4>
+          <p className="text-gray-600 text-sm line-clamp-4 leading-relaxed">{product.description}</p>
         </div>
       </div>
     )
   }
 
   return (
-    <section className="flex flex-col m-10 gap-6 h-full w-full">
-      <h1 className="text-2xl font-bold">Customer Review</h1>
-      <p className="text-gray-400 text-lg font-semibold -mt-4">{sampleReview.reduce((prev, cur) => prev + (cur.score/sampleReview.length),0)} out of {sampleReview.length} reviews</p>
-      <div className="flex gap-6 w-full">
-          {sampleReview.slice(0,5).map(TestimonyCard)}
+    <section className="py-12 px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Customer Reviews</h2>
+          <div className="flex items-center gap-6 text-gray-600">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1">
+                {Array.from({ length: 5 }, (_, index) => (
+                  <Star 
+                    key={index} 
+                    size={20} 
+                    className={index < Math.round(reviews.reduce((prev, cur) => prev + cur.score, 0) / reviews.length) ? "text-yellow-400 fill-current" : "text-gray-300"} 
+                  />
+                ))}
+              </div>
+              <span className="font-semibold text-lg">
+                {(reviews.reduce((prev, cur) => prev + cur.score, 0) / reviews.length).toFixed(1)}
+              </span>
+            </div>
+            <span>•</span>
+            <span>{reviews.length} verified reviews</span>
+            <span>•</span>
+            <span className="text-green-600 font-medium">
+              {Math.round((reviews.filter(r => r.score >= 4).length / reviews.length) * 100)}% recommend
+            </span>
+          </div>
+        </div>
+        
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <ReviewCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {reviews.map(TestimonyCard)}
+            </div>
+          </>
+        )}
       </div>
     </section>
-
   )
 }
 
 const InterestProduct = () => {
+  const [isLoading, setIsLoading] = useState(true);
 
-  const InterestCard = (product : Product) => {
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const InterestCard = (product: Product) => {
+    const categoryStyle = getCategoryStyle(product.category)
+    console.log(`Product: ${product.title}, Category: "${product.category}", Style:`, categoryStyle)
+
     return (
-      <div className="flex flex-col w-1/5 gap-4 justify-between aspect-square" key={product.title}>
-        <div className="self-center w-full aspect-square bg-gray-100 rounded-t-lg"></div>
-        <div className="flex-col gap-2">
-          <h1 className="font-bold text-xl cursor-pointer">
-            <Link to={`/product/${product.id + 1}`}>{product.title}</Link>
-          </h1>
-          <p className="text-gray-400 text-sm font-medium">{product.category}</p>
-          <big className="text-xl font-semibold">$ {product.price}</big>
+      <div className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden" key={product.title}>
+        <div className="relative overflow-hidden">
+          <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-300"></div>
+        </div>
+        <div className="p-4 space-y-2">
+          <Link to={`/product/${product.id + 1}`}>
+            <h3 className="font-semibold text-gray-900 hover:text-blue-600 transition-colors line-clamp-2">
+              {product.title}
+            </h3>
+          </Link>
+          <p className={`text-xs w-fit px-2 py-1 rounded-full category-tag category-${product.category.toLowerCase()} ${categoryStyle.bg} ${categoryStyle.text}`}>{product.category}</p>
+          <p className="text-gray-500 text-sm line-clamp-3">{product.description.slice(0, 50)}...</p>
+          <div className="flex items-center justify-between pt-2">
+            <span className="text-xl font-bold text-gray-900">${product.price}</span>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <section className="flex flex-col m-10 gap-6 h-full w-full">
-      <h1 className="text-2xl font-bold">Similar products you may be interested</h1>
-      <div className="flex gap-6 w-full">
-          {sampleProduct.slice(0,5).map(InterestCard)}
+    <section className="py-12 px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8">Similar products you may be interested in</h2>
+        
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+            {[...Array(5)].map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+            {sampleProduct.slice(0, 5).map(InterestCard)}
+          </div>
+        )}
       </div>
     </section>
   )
 }
 
-const Thumbnail = (product : Product) => {
+const Thumbnail = (product: Product) => {
   return (
-    <section className="flex flex-col m-10 gap-6 w-full items-center">
-      <h2 className="text-xl">More information on {product.title}</h2>
-      <div className="w-full aspect-video bg-gray-100"></div>
-      <h2 className="text-xl">{product.description}</h2>
+    <section className="py-12 px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <h2 className="text-3xl font-bold text-gray-900">More information about {product.title}</h2>
+        <div className="w-full h-64 lg:h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl animate-pulse"></div>
+        <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">{product.description}</p>
+      </div>
     </section>
   )
 }
 
 export default function ProductDetail() {
+  const params = useParams();
+  const navigate = useNavigate();
+  const productIndex: number = Number(params.productId) - 1;
+  const currentProduct: Product = sampleProduct[productIndex];
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedVersion1, setSelectedVersion1] = useState<number>(0);
+  const [selectedVersion2, setSelectedVersion2] = useState<number>(0);
 
-  let params = useParams()
-  let productIndex : number = Number(params.productId) - 1
-  const currentProduct : Product = sampleProduct[productIndex]
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const Version1 = (version : Version) => {
+  const Version1 = (version: Version, index: number) => {
+    const isSelected = selectedVersion1 === index;
     return (
-      <div className="flex items-center justify-center w-1/6 aspect-square bg-gray-100 rounded-lg cursor-pointer" key={version.title}></div>
+      <button
+        key={version.title}
+        onClick={() => setSelectedVersion1(index)}
+        className={`w-16 h-16 rounded-lg border-2 transition-all duration-200 ${
+          isSelected 
+            ? 'border-blue-500 bg-blue-50 shadow-md' 
+            : 'border-gray-200 bg-gray-100 hover:border-gray-300'
+        }`}
+      />
     )
   }
 
-  const Version2 = (version : Version) => {
+  const Version2 = (version: Version, index: number) => {
+    const isSelected = selectedVersion2 === index;
     return (
-      <div className="flex items-center justify-center w-1/6 aspect-video border-gray-300 border-2 rounded-lg cursor-pointer text-gray-400 text-sm text-bold" key={version.title}>{version.title}</div>
+      <button
+        key={version.title}
+        onClick={() => setSelectedVersion2(index)}
+        className={`px-4 py-2 rounded-lg border-2 transition-all duration-200 text-sm font-medium ${
+          isSelected 
+            ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md' 
+            : 'border-gray-200 bg-gray-100 text-gray-600 hover:border-gray-300'
+        }`}
+      >
+        {version.title}
+      </button>
     )
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <Navbar />
+        <div className="py-8 px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <ProductDetailSkeleton />
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   return (
-    <body className="flex flex-col w-full h-screen justify-between">
-        <Header />
-        <Navbar />
-          <main className="flex flex-col mx-10 h-full max-w-full items-center overflow-y-scroll overflow-x-hidden">
-            <div className="flex p-10 w-2/3 h-full">
-              <div className="w-1/2 h-5/6 bg-gray-100 rounded-2xl"></div>
-              <article className="flex flex-col px-10 py-5 gap-8 w-1/2">
-                <h1 className="text-4xl font-bold">{currentProduct.title}</h1>
-                <p className="text-xl text-gray-400 font-normal -mt-6">{currentProduct.category}</p>
-                <p className="text-2xl font-semibold -mt-6">{currentProduct.price} USD</p>
-                <div className="flex flex-col gap-4">
-                  <h2 className="text-xl font-semibold">Select version</h2>
-                  <div className="flex gap-2">
-                    {currentProduct.version1.map(Version1)}
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <Navbar />
+      
+      <main className="py-8 px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Back Button */}
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-8"
+          >
+            <ArrowLeft size={20} />
+            <span>Back to Products</span>
+          </button>
+
+          {/* Product Detail */}
+          <div className="bg-white rounded-2xl shadow-sm overflow-hidden mb-12">
+            <div className="flex flex-col lg:flex-row">
+              {/* Product Image */}
+              <div className="lg:w-1/2 p-8">
+                <div className="w-full h-96 lg:h-[500px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl animate-pulse"></div>
+              </div>
+
+              {/* Product Info */}
+              <div className="lg:w-1/2 p-8 space-y-6">
+                <div className="space-y-2">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-gray-900">{currentProduct.title}</h1>
+                  <p className={`text-xl rounded-full category-text-${currentProduct.category.toLowerCase()}`}>{currentProduct.category}</p>
+                  <p className="text-3xl font-bold text-gray-900">${currentProduct.price}</p>
+                </div>
+
+                {/* Version Selection */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Select Version</h3>
+                    <div className="flex gap-3">
+                      {currentProduct.version1.map((version, index) => Version1(version, index))}
+                    </div>
                   </div>
+                  
+                  {currentProduct.version2 && (
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Select Configuration</h3>
+                      <div className="flex gap-3 flex-wrap">
+                        {currentProduct.version2.map((version, index) => Version2(version, index))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div className="flex flex-col gap-4">
-                  <h2 className="text-xl font-semibold">Select version 2</h2>
-                  <div className="flex gap-2">
-                    {currentProduct.version2?.map(Version2)}
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                  <button className="font-bold text-lg flex gap-2 justify-center bg-black px-8 py-4 text-white rounded-full">
-                    <ShoppingCart width={24} height={24} color="white"/>
-                    <p>Add to Cart</p>
+
+                {/* Action Buttons */}
+                <div className="space-y-4 pt-4">
+                  <button className="w-full bg-black hover:bg-gray-800 text-white font-semibold py-4 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-3">
+                    <ShoppingCart size={20} />
+                    Add to Cart
                   </button>
-                  <button className="flex font-bold text-lg border-gray-300 border-2 rounded-full px-8 py-4 gap-2 items-center justify-center">
-                    <Heart width={24} height={24} />
-                    <p>Wishlist</p>
+                  <button className="w-full border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-4 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-3">
+                    <Heart size={20} />
+                    Add to Wishlist
                   </button>
                 </div>
-                <p className="text-lg text-gray-500">{currentProduct.description}</p>
-              </article>
+
+                {/* Description */}
+                <div className="pt-6 border-t border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Description</h3>
+                  <p className="text-gray-600 leading-relaxed">{currentProduct.description}</p>
+                </div>
+              </div>
             </div>
-            <Thumbnail {...currentProduct} />
-            <Testimony />
-            <InterestProduct />
-          </main>
-        <Footer />
-    </body>
+          </div>
+        </div>
+      </main>
+
+      <Thumbnail {...currentProduct} />
+      <Testimony />
+      <InterestProduct />
+      
+      <Footer />
+    </div>
   )
 }

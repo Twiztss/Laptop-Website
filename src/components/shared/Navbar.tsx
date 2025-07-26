@@ -6,26 +6,26 @@ import sampleCategory from "../../data/category-data"
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
-  const toggleDropdown = (categoryId: string) => {
-    if (activeDropdown === categoryId) {
-      setActiveDropdown(null)
-    } else {
-      setActiveDropdown(categoryId)
-    }
-  }
+  // Track hover state for dropdown and button
+  const handleDropdownEnter = (categoryId: string) => setActiveDropdown(categoryId)
+  const handleDropdownLeave = () => setActiveDropdown(null)
 
   return (
     <nav className="hidden border-b border-gray-100 bg-white md:block">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <ul className="flex justify-center">
           {sampleCategory.map((category) => (
-            <li key={category.id} className="relative">
+            <li
+              key={category.id}
+              className="relative"
+              onMouseEnter={() => handleDropdownEnter(category.id)}
+              onMouseLeave={handleDropdownLeave}
+            >
               <button
-                className="flex items-center gap-1 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900"
-                onMouseEnter={() => toggleDropdown(category.id)}
-                onMouseLeave={() => toggleDropdown(category.id)}
+                className="flex items-center gap-1 px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900 focus:outline-none"
                 aria-expanded={activeDropdown === category.id}
                 aria-controls={`dropdown-${category.id}`}
+                tabIndex={0}
               >
                 {category.name}
                 <ChevronDown
@@ -38,9 +38,11 @@ export default function Navbar() {
               {category.subcategories && (
                 <div
                   id={`dropdown-${category.id}`}
-                  className={`absolute left-0 z-10 min-w-[200px] rounded-md border border-gray-100 bg-white py-2 shadow-lg transition-all ${
-                    activeDropdown === category.id ? "visible opacity-100" : "invisible opacity-0"
+                  className={`absolute left-0 z-10 min-w-[200px] rounded-md border border-gray-100 bg-white py-2 shadow-lg transition-all duration-200 ease-in-out ${
+                    activeDropdown === category.id ? "visible opacity-100 translate-y-0" : "invisible opacity-0 -translate-y-2 pointer-events-none"
                   }`}
+                  onMouseEnter={() => handleDropdownEnter(category.id)}
+                  onMouseLeave={handleDropdownLeave}
                 >
                   {category.subcategories.map((subcategory) => (
                     <Link

@@ -1,152 +1,174 @@
 import { BookOpenTextIcon, Box, CreditCard, Crown, FolderArchive, ShieldAlert, SidebarIcon, User } from "lucide-react"
-import CreatableSelect from "react-select/creatable";
-import makeAnimated from 'react-select/animated';
 import { sampleSubCategory } from "../../data/category-data";
 import { SubCategory } from "../../types/Catogory";
 import { useLocation } from "react-router-dom";
-
-const options = [
-  { value: 'laptops', label: 'Laptops' },
-  { value: 'display', label: 'Display' },
-  { value: 'components', label: 'Components' },
-  { value: 'gadgets', label: 'Gadgets' },
-  { value: 'misc', label: 'Misc' },
-]
+import { useState } from "react";
 
 const CategoryOption = () => {
+  const subCategoryMenu = (item: SubCategory) => (
+    <button
+      className="flex gap-2 items-center rounded-md px-2 py-1 transition-colors duration-200 cursor-pointer hover:bg-gray-100 hover:shadow-sm focus:bg-gray-200 w-full text-left"
+      key={item.name}
+      tabIndex={0}
+      aria-label={`Navigate to ${item.name} category`}
+    >
+      <FolderArchive width={16} height={16} className="opacity-50" />
+      <span className="text-sm font-medium">{item.name}</span>
+    </button>
+  );
 
-    const subCategoryMenu = (item : SubCategory) => {
-      return (
-        <div className="flex gap-2 items-center" key={item.name}>
-          <FolderArchive width={16} height={16} className="opacity-50"/>
-          <p className="text-sm font-medium">{item.name}</p>
-        </div>
-      )
-    }
-
-    const subCategory = (item : SubCategory[]) => {
-      return (
-        <div className="flex flex-col gap-1" key={item[0].name}>
-          <h3 className="text-sm font-semibold">{item[0].name}</h3>
-          <div className="flex flex-col gap-1">
-            {item.slice(1).map(subCategoryMenu)}
-          </div>
-        </div>
-      )
-    }
-
-    return (
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-col gap-2">
-            {sampleSubCategory.slice(0,3).map(subCategory)}
-          </div>
-        </div>  
-    )
-}
-
-const animatedComponents = makeAnimated();
-
-const Filter = () => {
-
-  return (
-    <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">Filter</h2>
-      <hr className="border-1"/>
-      <CreatableSelect
-      closeMenuOnSelect={false}
-      components={animatedComponents}
-      defaultValue={[options[4], options[5]]}
-      isMulti
-      options={options}
-      />
-      <div className="flex flex-col gap-2">
-        {options.map((index) => {
-          return (
-            <div className="flex gap-2" key={index.label}>
-              <input type="checkbox" name="" id="" />
-              <p className="text-sm font-medium">{index.label}</p>
-            </div>
-          )
-        })}
-      </div>
+  const subCategory = (item: SubCategory[]) => (
+    <div className="flex flex-col gap-1" key={item[0].name}>
+      <h3 className="text-sm font-semibold text-gray-700 mb-1">{item[0].name}</h3>
+      <nav className="flex flex-col gap-1" aria-label={`${item[0].name} subcategories`}>
+        {item.slice(1).map(subCategoryMenu)}
+      </nav>
     </div>
-  )
-}
+  );
 
-const ProfileOption = ({handleClick} : any) => {
   return (
-    <div className="flex flex-col gap-12">
+    <nav className="flex flex-col gap-4" aria-label="Product categories">
       <div className="flex flex-col gap-2">
-        <p className="font-semibold text-lg">User</p>
-        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
+        {sampleSubCategory.slice(0, 3).map(subCategory)}
+      </div>
+    </nav>
+  );
+};
+
+const ProfileOption = ({ handleClick }: any) => (
+  <nav className="flex flex-col gap-8" aria-label="Profile navigation">
+    <div className="flex flex-col gap-2">
+      <h2 className="font-semibold text-lg text-gray-900">User</h2>
+      <div className="flex flex-col gap-1">
+        <button 
+          className="flex gap-4 items-center rounded-md px-2 py-2 cursor-pointer transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200 w-full text-left" 
+          onClick={handleClick} 
+          id="Account" 
+          tabIndex={0}
+          aria-label="Navigate to Account settings"
+        >
           <User color="gray" width={20} height={20} />
-          <p className="font-semibold text-lg text-gray-500">Accounts</p>
-        </div>
-        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Payment">
+          <span className="font-semibold text-lg text-gray-500">Accounts</span>
+        </button>
+        <button 
+          className="flex gap-4 items-center rounded-md px-2 py-2 cursor-pointer transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200 w-full text-left" 
+          onClick={handleClick} 
+          id="Payment" 
+          tabIndex={0}
+          aria-label="Navigate to Payment settings"
+        >
           <CreditCard color="gray" width={20} height={20} />
-          <p className="font-semibold text-lg text-gray-500">Payment Method</p>
-        </div>
-        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Subscriptions">
+          <span className="font-semibold text-lg text-gray-500">Payment Method</span>
+        </button>
+        <button 
+          className="flex gap-4 items-center rounded-md px-2 py-2 cursor-pointer transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200 w-full text-left" 
+          onClick={handleClick} 
+          id="Subscriptions" 
+          tabIndex={0}
+          aria-label="Navigate to Subscriptions"
+        >
           <Crown color="gray" width={20} height={20} />
-          <p className="font-semibold text-lg text-gray-500">Subscriptions</p>
-        </div>
-        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Orders">
+          <span className="font-semibold text-lg text-gray-500">Subscriptions</span>
+        </button>
+        <button 
+          className="flex gap-4 items-center rounded-md px-2 py-2 cursor-pointer transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200 w-full text-left" 
+          onClick={handleClick} 
+          id="Orders" 
+          tabIndex={0}
+          aria-label="Navigate to Orders"
+        >
           <Box color="gray" width={20} height={20} />
-          <p className="font-semibold text-lg text-gray-500">Orders</p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-2">
-        <p className="font-semibold text-lg">Settings</p>
-        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
-          <BookOpenTextIcon color="gray" width={20} height={20}/>
-          <p className="font-semibold text-lg text-gray-500">Preferences</p>
-        </div>
-        <div className="flex gap-4 items-center cursor-pointer" onClick={handleClick} id="Account">
-          <ShieldAlert color="gray" width={20} height={20} />
-          <p className="font-semibold text-lg text-gray-500">Privacy</p>
-        </div>
+          <span className="font-semibold text-lg text-gray-500">Orders</span>
+        </button>
       </div>
     </div>
-  )
-}
+    <div className="flex flex-col gap-2">
+      <h2 className="font-semibold text-lg text-gray-900">Settings</h2>
+      <div className="flex flex-col gap-1">
+        <button 
+          className="flex gap-4 items-center rounded-md px-2 py-2 cursor-pointer transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200 w-full text-left" 
+          onClick={handleClick} 
+          id="Preferences" 
+          tabIndex={0}
+          aria-label="Navigate to Preferences"
+        >
+          <BookOpenTextIcon color="gray" width={20} height={20} />
+          <span className="font-semibold text-lg text-gray-500">Preferences</span>
+        </button>
+        <button 
+          className="flex gap-4 items-center rounded-md px-2 py-2 cursor-pointer transition-colors duration-200 hover:bg-gray-100 focus:bg-gray-200 w-full text-left" 
+          onClick={handleClick} 
+          id="Privacy" 
+          tabIndex={0}
+          aria-label="Navigate to Privacy settings"
+        >
+          <ShieldAlert color="gray" width={20} height={20} />
+          <span className="font-semibold text-lg text-gray-500">Privacy</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+);
 
-export default function Sidebar({ handleClick } : any) {
-
-  const url = useLocation().pathname
-
-  const PageComponent = (url : string) => {
-    
-    let component
-
-    if (url == "/products") {
-      // px-12 py-6
-      component =  (
-        <section className="flex flex-col gap-6 px-12 py-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold">{(url.slice(1,url.length).toUpperCase())}</h1>
-            <SidebarIcon color="gray" className="cursor-pointer"/>
-          </div>
-          <hr className="border-1"/>
-          <CategoryOption />
-          <Filter />
-        </section>
-      )
-    } else if (url == "/profile") {
-      // p-8
-      component = (
-        <section className="flex flex-col gap-6 p-8">
-          <h1 className="text-2xl font-bold">Profile</h1>
-          <ProfileOption handleClick={handleClick} />
-        </section>
-      )
-    }
-
-    return component
-  }
+export default function Sidebar({ handleClick }: any) {
+  const url = useLocation().pathname;
+  const [open, setOpen] = useState(false);
 
   return (
-    <aside className='flex flex-col border-gray-100 border-2 border-t-0 w-1/5 h-full overflow-hidden'>
-      {PageComponent(url)}
-    </aside>
-  )
+    <>
+      {/* Mobile sidebar toggle button */}
+      <button
+        className="fixed top-4 left-4 z-40 flex items-center justify-center rounded-full bg-white shadow-md p-2 border border-gray-200 md:hidden transition hover:bg-gray-100"
+        onClick={() => setOpen(!open)}
+        aria-label="Toggle sidebar"
+        aria-expanded={open}
+      >
+        <SidebarIcon className="text-gray-700" />
+      </button>
+      
+      {/* Sidebar overlay for mobile */}
+      <div
+        className={`fixed inset-0 z-30 bg-black bg-opacity-30 transition-opacity duration-300 md:hidden ${open ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
+      
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-0 left-0 z-40 flex flex-col w-64 min-h-screen bg-white border-r border-gray-100 shadow-lg transition-transform duration-300 md:static md:w-1/5 md:min-h-screen md:h-auto md:shadow-none md:border-r md:border-t-0 ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+        aria-label="Navigation sidebar"
+      >
+        <div className="flex flex-col h-full min-h-screen md:min-h-0">
+          {url === "/products" && (
+            <section className="flex flex-col gap-6 px-6 py-8 h-full">
+              <header className="flex justify-between items-center flex-shrink-0">
+                <h1 className="text-2xl font-bold text-gray-900">Categories</h1>
+                <button 
+                  className="md:hidden" 
+                  onClick={() => setOpen(false)} 
+                  aria-label="Close sidebar"
+                >
+                  <SidebarIcon color="gray" className="cursor-pointer" />
+                </button>
+              </header>
+              <hr className="border-gray-200 flex-shrink-0" />
+              <div className="flex-1 overflow-y-auto">
+                <CategoryOption />
+              </div>
+            </section>
+          )}
+          {url === "/profile" && (
+            <section className="flex flex-col gap-6 p-8 h-full">
+              <header className="flex-shrink-0">
+                <h1 className="text-2xl font-bold text-gray-900">Profile</h1>
+              </header>
+              <div className="flex-1 overflow-y-auto">
+                <ProfileOption handleClick={handleClick} />
+              </div>
+            </section>
+          )}
+        </div>
+      </aside>
+    </>
+  );
 }
