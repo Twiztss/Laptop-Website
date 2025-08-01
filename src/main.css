@@ -135,3 +135,23 @@ html {
   background-color: #f3e8ff;
   color: #7c3aed;
 }
+
+.btn-silver:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.btn-gold:hover {
+  background-color: #f59e0b;
+  color: #1f2937;
+}
+
+.btn-platinum:hover {   
+  background-color: #707070;
+  color: white;
+}
+
+.btn-diamond:hover {
+  background-color: #dcfce7;
+  color: #1f2937;
+}

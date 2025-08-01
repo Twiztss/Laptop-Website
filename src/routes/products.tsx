@@ -71,15 +71,26 @@ export default function Products() {
   const handleSortChange = (sortValue: string) => {
     setSortBy(sortValue)
     setShowSortDropdown(false)
+    if (currentProductList) {
     switch (sortValue) {
       case "price-low":
-        setCurrentProductList(sampleProduct.sort((a:Product, b:Product) => { return a.price - b.price}))
+        setCurrentProductList(currentProductList.sort((a:Product, b:Product) => { return a.price - b.price}))
         break
       case "price-high":
-        setCurrentProductList(sampleProduct.sort((a:Product, b:Product) => { return b.price - a.price}))
+        setCurrentProductList(currentProductList.sort((a:Product, b:Product) => { return b.price - a.price}))
         break
-      default:
-        setCurrentProductList(sampleProduct)
+      case "name-asc":
+        setCurrentProductList(currentProductList.sort((a:Product, b:Product) => { return a.title.localeCompare(b.title)}))
+        break
+      case "name-desc":
+        setCurrentProductList(currentProductList.sort((a:Product, b:Product) => { return b.title.localeCompare(a.title)}))
+        break
+      case "newest":
+        setCurrentProductList(currentProductList.sort((a:Product, b:Product) => { return b.id - a.id}))  
+        break
+        default:
+          setCurrentProductList(currentProductList)
+      }
     }
   }
 

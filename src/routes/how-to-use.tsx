@@ -1,49 +1,115 @@
+import { Link } from "react-router-dom";
 import FooterFull from "../components/shared/FooterFull";
 import Header from "../components/shared/Header";
+import { useEffect, useRef, useState } from "react";
 
-const data = [
+const data : {id: number, step: string, stepInfo: string}[] = [
   {
     id : 0,
-    step : "Aute proident duis commodo ut eu officia non sunt anim ullamco qui officia sunt aliquip.",
-    stepInfo : "Quis aute exercitation nisi aliquip ad in occaecat cupidatat voluptate ipsum consequat. Do deserunt eiusmod adipisicing ut elit quis magna. Elit sit ipsum ad esse laboris et. Proident ea elit magna voluptate veniam. Amet sunt culpa id magna pariatur est officia adipisicing eu. Occaecat amet labore quis duis enim est reprehenderit esse est et excepteur deserunt in. Consequat qui officia magna mollit commodo qui esse.",
+    step : "Browse and Select Your Laptop",
+    stepInfo : "Start by exploring our extensive collection of laptops. Use the search filters to narrow down your options by brand, price range, specifications, or features. Click on any laptop that catches your interest to view detailed specifications, customer reviews, and high-quality images.",
   },
   {
     id : 1,
-    step : "Lorem commodo cillum veniam laborum eu adipisicing laboris.",
-    stepInfo : "Laborum proident laborum voluptate voluptate veniam tempor dolor excepteur enim sunt. Et sunt sint incididunt voluptate dolor amet quis eu nulla officia ipsum quis consectetur. Anim est laboris dolor voluptate amet in nulla officia nisi cupidatat eu eiusmod do veniam. Laborum amet velit excepteur veniam. Consequat do ex labore voluptate sint eiusmod cupidatat aliquip aliqua nostrud nulla do ullamco. Irure id esse deserunt voluptate ullamco dolor.",
+    step : "Add to Cart and Review",
+    stepInfo : "Once you've found your perfect laptop, click the 'Add to Cart' button. You can continue shopping or proceed to your cart to review your selection. In the cart, you can adjust quantities, remove items, or add accessories and warranty options before checkout.",
   },
   {
     id : 2,
-    step : "Cillum tempor consequat deserunt laboris nisi veniam aute ut officia officia mollit laboris anim sint.",
-    stepInfo : "Ipsum nulla voluptate nostrud cupidatat. Velit veniam aliqua aute enim ea. Dolore ea amet exercitation consectetur nisi adipisicing laborum amet ex.",
+    step : "Complete Your Order",
+    stepInfo : "Proceed to checkout where you'll enter your shipping address, select your preferred delivery method, and choose your payment option. We accept major credit cards, PayPal, and other secure payment methods. Review your order summary and confirm your purchase.",
   },
   {
     id : 3,
-    step : "Nisi ipsum sit fugiat ullamco consequat ad laboris consequat laborum est.",
-    stepInfo : "Incididunt sunt sunt aliquip eu. Adipisicing tempor elit esse deserunt dolore culpa duis mollit. Adipisicing anim voluptate laboris eu nostrud eu anim laboris deserunt labore quis occaecat esse consequat. Sit reprehenderit commodo irure ut aute qui irure Lorem minim eiusmod pariatur Lorem. Exercitation excepteur tempor irure ad ullamco. Voluptate adipisicing proident commodo minim pariatur enim consequat aute aliqua adipisicing cupidatat nisi in. Commodo quis ipsum commodo amet magna eu duis ipsum culpa qui culpa anim incididunt.",
+    step : "Track Your Delivery",
+    stepInfo : "After placing your order, you'll receive a confirmation email with your order number and tracking information. You can track your package's journey from our warehouse to your doorstep through our website or the provided tracking link. Most orders are delivered within 3-5 business days.",
   },
 ]
 
 export default function HowToUse() {
+  const [visibleSteps, setVisibleSteps] = useState<Set<number>>(new Set());
+  const stepRefs = useRef<(HTMLElement | null)[]>([]);
 
-  const renderInstruction = (data : any) => {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const stepId = parseInt(entry.target.getAttribute('data-step-id') || '0');
+          if (entry.isIntersecting) {
+            setVisibleSteps(prev => new Set([...prev, stepId]));
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    stepRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const renderInstruction = (data : {id: number, step: string, stepInfo: string}) => {
+    const isVisible = visibleSteps.has(data.id);
+    
     return (
-      <div className="flex flex-col gap-6 w-full" key = {data.step}>
-          <div className="bg-gray-400 rounded-full w-10 h-10 text-white flex items-center justify-center font-bold">{data.id + 1}</div>
-          <h1 className="text-3xl font-bold">{data.step}</h1>
-          <p className="font-normal text-md text-gray-400">{data.stepInfo}</p>
-          <div className="bg-gray-100 w-full self-center aspect-[3.75]"></div>
-      </div>
+      <article 
+        key={data.id} 
+        ref={(el) => (stepRefs.current[data.id] = el)}
+        data-step-id={data.id}
+        className={`flex flex-col gap-8 w-full transition-all duration-700 ease-out transform ${
+          isVisible 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-8'
+        }`}
+      >
+        <div className="flex items-start gap-6">
+          <div className="bg-gray-600 rounded-full w-12 h-12 text-white flex items-center justify-center font-bold text-lg shadow-lg flex-shrink-0">
+            {data.id + 1}
+          </div>
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">{data.step}</h2>
+            <p className="text-gray-600 leading-relaxed">{data.stepInfo}</p>
+          </div>
+        </div>
+        
+        {/* Step connector line */}
+        {data.id < 3 && (
+          <div className="w-0.5 h-16 bg-gradient-to-b from-gray-600 to-gray-300 ml-6"></div>
+        )}
+      </article>
     )
   }
 
   return (
-    <main className="flex flex-col w-full items-center">
+    <main className="flex flex-col w-full items-center min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <Header />
-      <section className="flex flex-col gap-10 mx-16 my-10 h-5/6 w-1/2">
-        <h1 className="text-4xl font-bold self-center">How to use?</h1>
-        <p className="text-gray-400 font-semibold self-center"></p>
-        {data.map(renderInstruction)}
+      <section className="flex flex-col gap-16 mx-8 my-16 max-w-4xl w-full px-4">
+        <div className="text-center mb-8">
+          <h1 className="text-5xl font-bold text-gray-800 mb-4">How to Order</h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Follow these simple steps to order your perfect laptop from our website
+          </p>
+        </div>
+        
+        <div className="flex flex-col gap-8">
+          {data.map(renderInstruction)}
+        </div>
+        
+        {/* Final CTA */}
+        <div className="text-center mt-12 p-8 bg-gray-50 rounded-2xl border border-gray-100">
+          <h3 className="text-2xl font-bold text-gray-800 mb-4">Ready to Get Started?</h3>
+          <p className="text-gray-600 mb-6">
+            Now that you know how easy it is to order, why not browse our selection of laptops?
+          </p>
+          <button className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-lg">
+            <Link to="/products">Browse Laptops</Link>
+          </button>
+        </div>
       </section>
       <FooterFull />
     </main>

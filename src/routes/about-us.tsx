@@ -88,10 +88,10 @@ export default function AboutUs() {
   }
 
   return (
-    <main className="flex flex-col w-full h-screen justify-between gap-8">
+    <main className="flex flex-col w-full h-screen justify-between gap-8 bg-gray-50">
       <Header />
       {/* Overview, Please render later thanks */}
-      <body className="flex flex-col p-10 gap-10">
+      <main className="flex flex-col p-10 gap-10 bg-gray-50">
         <section className="flex justify-center items-center py-10">
           <div className="flex flex-col gap-8 md:w-1/2 w-full mx-10 text-center">
             <h1 className="md:text-5xl text-4xl font-bold">We are the team dedicate in developments of electronics.</h1>
@@ -113,7 +113,7 @@ export default function AboutUs() {
         <section className="flex flex-col w-full items-center">
           <ContactForm />
         </section>
-      </body>
+      </main>
       <FooterFull />
     </main>
   )

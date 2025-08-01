@@ -205,7 +205,7 @@ const sampleProduct: Product[] = [
     {
         id: 14,
         title: "NVIDIA RTX 4080 Founders Edition",
-        description: "High-end graphics card with 16GB GDDR6X memory, ray tracing capabilities, and DLSS 3.0 support. Perfect for 4K gaming and professional content creation.",
+        description: "High-end graphics card with 16GB GDDR6X memory, ray tracing capabilities.",
         category: sampleCategory[2].name,
         url: "/products/nvidia-rtx-4080-founders",
         price: 1199.99,

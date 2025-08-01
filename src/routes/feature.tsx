@@ -2,6 +2,7 @@ import Header from "../components/shared/Header"
 import { ArrowRight, Compass, Computer, FastForward, InspectionPanel, Origami, Terminal } from "lucide-react"
 import FooterFull from "../components/shared/FooterFull"
 import Button from "../components/ui/Button"
+import { Link } from "react-router-dom"
 
 const data : object[] = [
   {
@@ -127,8 +128,8 @@ export default function Feature() {
           <h1 className="text-center text-6xl font-bold tracking-wider">Features</h1>
           <p className="text-center font-normal text-gray-700 text-lg w-5/12">Feature description describing how good the product actually is within few sentences captivating potential customers  .</p>
           <div className="flex gap-4">
-            <Button className="px-8 py-3" type="primary">Register</Button>
-            <Button className="px-8 py-3" type="secondary">Explore</Button>
+            <Button className="px-8 py-3 transition-all duration-300 hover:bg-gray-600 hover:text-white" type="primary"><Link to="/auth">Register</Link></Button>
+            <Button className="px-8 py-3 transition-all duration-300 hover:bg-gray-900 hover:text-white" type="secondary"><Link to="/products" className="hover:text-white transition-all duration-300">Explore</Link></Button>
           </div>
         </div>  
       </section>

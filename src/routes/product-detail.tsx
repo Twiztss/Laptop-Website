@@ -13,7 +13,7 @@ import { getCategoryStyle } from "../utils/style";
 
 const Testimony = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const reviews = sampleReview.slice(0, Math.random() * 10)
+  const reviews = sampleReview.slice(0, Math.random() * 10) || []
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);
