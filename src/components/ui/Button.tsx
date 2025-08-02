@@ -6,6 +6,7 @@ type ButtonProps = {
     onClick? : (e : any) => void,
     children : React.ReactPortal | PropsWithChildren<any> | React.ReactNode,
     type? : string,
+    disabled? : boolean,
 }
 
 export default function Button({ name , className, type, onClick = () => {console.log("Test Button")}, children } : ButtonProps) {

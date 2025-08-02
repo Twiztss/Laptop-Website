@@ -10,7 +10,10 @@ export const sampleTier : MemberTier[] = [
     description : "For casual shoppers trying out new products.",
     price : 0,
     benefits : [
-      "Sample benefit 1",
+      "Basic product access",
+      "Standard customer support",
+      "Email notifications",
+      "Order tracking"
     ],
   },
   {
@@ -20,8 +23,11 @@ export const sampleTier : MemberTier[] = [
     description : "Offers limited yet beneficial perks for your purchases.",
     price : 1.99,
     benefits : [
-      "Sample benefit 1",
-      "Sample benefit 2",
+      "All Regular features",
+      "Priority customer support",
+      "5% discount on all orders",
+      "Free shipping on orders $50+",
+      "Early access to sales"
     ],
   },
   {
@@ -31,9 +37,12 @@ export const sampleTier : MemberTier[] = [
     description : "For enthusiast looking for enjoyable discounts.",
     price : 2.99,
     benefits : [
-      "Sample benefit 1",
-      "Sample benefit 2",
-      "Sample benefit 3",
+      "All Silver features",
+      "10% discount on all orders",
+      "Free express shipping",
+      "Exclusive member events",
+      "Extended return window",
+      "Personal shopping assistant"
     ],
   },
   {
@@ -43,10 +52,12 @@ export const sampleTier : MemberTier[] = [
     description : "Provides exotic feature exclusively.",
     price : 3.99,
     benefits : [
-      "Sample benefit 1",
-      "Sample benefit 2",
-      "Sample benefit 3",
-      "Sample benefit 4",
+      "All Gold features",
+      "10% discount on all orders",
+      "Free express shipping",
+      "Exclusive member events",
+      "Extended return window",
+      "Personal shopping assistant"
     ],
   },
   {
@@ -56,11 +67,13 @@ export const sampleTier : MemberTier[] = [
     description : "Experience ultimate shopping experience.",
     price : 4.99,
     benefits : [
-      "Sample benefit 1",
-      "Sample benefit 2",
-      "Sample benefit 3",
-      "Sample benefit 4",
-      "Sample benefit 5",
+      "All Platinum features",
+      "20% discount on all orders",
+      "Unlimited free shipping",
+      "24/7 dedicated support",
+      "Custom product requests",
+      "Exclusive member-only products",
+      "Priority repair service"
     ],
   },
 ]

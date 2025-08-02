@@ -1,6 +1,6 @@
 import { Users } from "../../types/Users";
 import { PaymentCard } from "../../components/settings/PaymentCard";
-import { SubscriptionCard } from "../../components/settings/SubscriptionCard";
+import { SubscriptionSection } from "../../components/settings/SubscriptionCard";
 import { PersonInfoCard } from "../../components/settings/PersonInfoCard";
 import { OrderInfoCard } from "../../components/settings/OrderInfoCard";
 import { AddressCard } from "../../components/settings/AddressCard";
@@ -13,7 +13,7 @@ export default function Settings( user : Users ) {
         <PersonInfoCard user={user} />
         <AddressCard address={user.payment.billingAddress} />
         <PaymentCard user={user} />
-        <SubscriptionCard user={user} />
+        <SubscriptionSection user={user} />
         <OrderInfoCard user={user} />
     </article>
   )

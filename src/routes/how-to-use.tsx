@@ -68,18 +68,18 @@ export default function HowToUse() {
         }`}
       >
         <div className="flex items-start gap-6">
-          <div className="bg-gray-600 rounded-full w-12 h-12 text-white flex items-center justify-center font-bold text-lg shadow-lg flex-shrink-0">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-full w-12 h-12 text-white flex items-center justify-center font-bold text-lg shadow-lg flex-shrink-0">
             {data.id + 1}
           </div>
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">{data.step}</h2>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">{data.step}</h2>
             <p className="text-gray-600 leading-relaxed">{data.stepInfo}</p>
           </div>
         </div>
         
         {/* Step connector line */}
         {data.id < 3 && (
-          <div className="w-0.5 h-16 bg-gradient-to-b from-gray-600 to-gray-300 ml-6"></div>
+          <div className="w-0.5 h-16 bg-gradient-to-b from-blue-600 to-purple-300 ml-6"></div>
         )}
       </article>
     )
@@ -90,7 +90,7 @@ export default function HowToUse() {
       <Header />
       <section className="flex flex-col gap-16 mx-8 my-16 max-w-4xl w-full px-4">
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">How to Order</h1>
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent mb-4">How to Order</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Follow these simple steps to order your perfect laptop from our website
           </p>
@@ -101,12 +101,12 @@ export default function HowToUse() {
         </div>
         
         {/* Final CTA */}
-        <div className="text-center mt-12 p-8 bg-gray-50 rounded-2xl border border-gray-100">
-          <h3 className="text-2xl font-bold text-gray-800 mb-4">Ready to Get Started?</h3>
+        <div className="text-center mt-12 p-8 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100 shadow-lg">
+          <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">Ready to Get Started?</h3>
           <p className="text-gray-600 mb-6">
             Now that you know how easy it is to order, why not browse our selection of laptops?
           </p>
-          <button className="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200 shadow-lg">
+          <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
             <Link to="/products">Browse Laptops</Link>
           </button>
         </div>

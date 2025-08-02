@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SettingsSection } from "./SettingsSection";
 import { Users } from "../../types/Users";
 
-export const SubscriptionCard = ({ user }: { user: Users }) => {
+export const SubscriptionSection = ({ user }: { user: Users }) => {
     const date = new Date();
 
     return (
