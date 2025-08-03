@@ -1,6 +1,6 @@
 import { Users } from "../../types/Users";
 import { PaymentCard } from "../../components/settings/PaymentCard";
-import { SubscriptionSection } from "../../components/settings/SubscriptionCard";
+import { SubscriptionSection } from "../../components/settings/SubscriptionSection";
 import { PersonInfoCard } from "../../components/settings/PersonInfoCard";
 import { OrderInfoCard } from "../../components/settings/OrderInfoCard";
 import { AddressCard } from "../../components/settings/AddressCard";

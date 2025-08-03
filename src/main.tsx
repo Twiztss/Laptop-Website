@@ -11,11 +11,13 @@ import AboutUs from './routes/about-us'
 import ProductDetail from './routes/product-detail'
 import Cart from './routes/cart'
 import Favorite from './routes/favorite'
-import Auth from './routes/auth'
-import Profile from './routes/Profile/profile'
+import Profile from './routes/profile/profile'
 import Subscription from './routes/subscription'
 import OrderDetail from './routes/order-detail'
 import Checkout from './routes/checkout'
+import SignIn from './routes/auth/sign-in'
+import SignUp from './routes/auth/sign-up'
+import ForgotPassword from './routes/auth/forgot-password'
 
 const router = createBrowserRouter([
   {
@@ -52,10 +54,6 @@ const router = createBrowserRouter([
     element : <Favorite />
   },
   {
-    path : "auth",
-    element : <Auth />
-  },
-  {
     path : "profile",
     element : <Profile />
   },
@@ -71,6 +69,18 @@ const router = createBrowserRouter([
     path : "checkout",
     element : <Checkout />
   },
+  {
+    path : "sign-in",
+    element : <SignIn />
+  },
+  {
+    path : "sign-up",
+    element : <SignUp />
+  },
+  {
+    path : "forgot-password",
+    element : <ForgotPassword />
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

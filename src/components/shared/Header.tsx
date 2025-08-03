@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Heart, Laptop2, Menu, ShoppingCart, UserCircle, X } from "lucide-react"
+import { Heart, Laptop2, LogOut, Menu, ShoppingCart, Sparkle, UserCircle, X } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const navLinks = [
@@ -14,7 +14,7 @@ export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   // Test credential
-  const isLoggedIn = true
+  const [loggedIn, setLoggedIn] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 w-full border-gray-100 bg-white shadow-sm">
@@ -52,7 +52,7 @@ export default function Header() {
         </div>
 
         {/* Action icons */}
-        <div className="flex items-center gap-4">
+        <div className="md:flex md:items-center md:gap-4 hidden">
           <Link
             to="/favorite"
             className="rounded-md p-1.5 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900"
@@ -67,13 +67,40 @@ export default function Header() {
           >
             <ShoppingCart size={20} />
           </Link>
-          <Link
-            to={isLoggedIn ? "/profile" : "/auth"}
-            className="rounded-md p-1.5 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            aria-label="Profile"
-          >
-            <UserCircle size={20} />
-          </Link>
+          {loggedIn ? 
+          <>
+            <Link
+              to={loggedIn ? "/profile" : "/auth"}
+              className="rounded-md p-1.5 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              aria-label="Profile"
+            >
+              <UserCircle size={20} />
+            </Link>
+            <button className="rounded-md p-1.5 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900" onClick={() => {setLoggedIn(false)}}>
+              <LogOut size={16} />
+            </button>
+          </> 
+          : 
+          <div className="md:flex hidden items-center gap-2">
+            <Link
+              to="/sign-up"
+              className="rounded-md px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900 border border-gray-300 hover:border-gray-400"
+              aria-label="Sign Up"
+            >
+              Sign Up
+            </Link>
+            <Link
+              to="/sign-in"
+              className="rounded-md px-3 py-1.5 text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 text-white transition-all duration-200 hover:from-blue-700 hover:to-purple-700 shadow-sm hover:shadow-md"
+              aria-label="Sign In"
+            >
+              Sign In
+            </Link>
+            <button onClick={() => {setLoggedIn(true)}}>
+              <Sparkle size={16} className="text-blue-600" />
+            </button>
+          </div>
+          }
         </div>
       </div>
 
@@ -143,16 +170,33 @@ export default function Header() {
                   <span>Cart</span>
                 </Link>
               </li>
-              <li>
+              {loggedIn ? 
+              <>
                 <Link
-                  to={isLoggedIn ? "/profile" : "/auth"}
+                  to={loggedIn ? "/profile" : "/auth"}
                   className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900"
                   onClick={() => setIsSidebarOpen(false)}
                 >
                   <UserCircle size={18} color="gray" />
-                  <span>{isLoggedIn ? "Profile" : "Sign In"}</span>
+                  <span>Profile</span>
                 </Link>
-              </li>
+                <button className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900" onClick={() => {setLoggedIn(false)}}>
+                  <LogOut size={16} />
+                  <span>Logout</span>
+                </button>
+              </> : 
+              <>
+                <Link to="/auth" className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                  <span>Sign Up</span>
+                </Link>
+                <Link to="/auth" className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                  <span>Sign In</span>
+                </Link>
+                <button onClick={() => {setLoggedIn(true)}} className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-900">
+                  <Sparkle size={16} className="text-blue-600" />
+                </button>
+              </>
+              }
             </ul>
           </div>
         </div>
