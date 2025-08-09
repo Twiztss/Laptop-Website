@@ -5,6 +5,7 @@ import { sampleStaffs } from "../data/user-data";
 import Button from "../components/ui/Button";
 import FooterFull from "../components/shared/FooterFull";
 import Form from "../components/ui/Forms";
+import { Helmet } from "react-helmet-async";
 
 const ContactForm = () => {
 
@@ -88,6 +89,11 @@ export default function AboutUs() {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Laptop Website | About Us</title>
+      <meta name="description" content="About Us" />
+    </Helmet>
     <main className="flex flex-col w-full h-screen justify-between gap-8 bg-gradient-to-b from-gray-50 to-white">
       <Header />
       {/* Overview, Please render later thanks */}
@@ -116,5 +122,6 @@ export default function AboutUs() {
       </main>
       <FooterFull />
     </main>
+    </>
   )
 }

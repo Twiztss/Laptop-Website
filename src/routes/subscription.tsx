@@ -5,6 +5,7 @@ import { sampleTier } from "../data/user-data";
 import { useState, useEffect } from "react";
 import Button from "../components/ui/Button";
 import { SubscriptionCard } from "../components/subscription/SubscriptionCard";
+import { Helmet } from "react-helmet-async";
 
 export default function Subscription() {
     const [isYearly, setIsYearly] = useState(false);
@@ -15,6 +16,11 @@ export default function Subscription() {
     }, []);
 
     return (
+        <>
+        <Helmet>
+            <title>Laptop Website | Subscription</title>
+            <meta name="description" content="Subscription" />
+        </Helmet>
         <main className="flex flex-col w-full min-h-screen bg-gradient-to-b from-gray-50 to-white">
             <Header />
             
@@ -106,5 +112,6 @@ export default function Subscription() {
             
             <Footer />
         </main>
+        </>
     );
 }

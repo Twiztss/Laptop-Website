@@ -4,6 +4,7 @@ import { calcProp } from "./cart"
 import sampleProduct from "../data/product-data"
 import { useState } from "react"
 import Button from "../components/ui/Button"
+import { Helmet } from "react-helmet-async"
 
 const StepData = [
     { id : 1, description : "Contact Information" },
@@ -139,7 +140,12 @@ export default function Checkout () {
     const cartItem = [...sampleProduct.slice(1,3)]
 
     return (
-        <body className="flex flex-col w-full h-screen justify-between">
+        <>
+        <Helmet>
+            <title>Laptop Website | Checkout</title>
+            <meta name="description" content="Checkout" />
+        </Helmet>
+        <main className="flex flex-col w-full h-screen justify-between">
             <Header />
             <CheckoutStep step={step} />
             <main className="flex m-10 h-5/6 gap-10 justify-center">
@@ -156,6 +162,7 @@ export default function Checkout () {
                 <Total item={cartItem.map(item => item.amount * item.price)}/>
             </main>
             <Footer />
-        </body>
+        </main>
+        </>
     )
 }

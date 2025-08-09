@@ -11,13 +11,14 @@ import AboutUs from './routes/about-us'
 import ProductDetail from './routes/product-detail'
 import Cart from './routes/cart'
 import Favorite from './routes/favorite'
-import Profile from './routes/profile/profile'
+import User from './routes/profile/user'
 import Subscription from './routes/subscription'
 import OrderDetail from './routes/order-detail'
 import Checkout from './routes/checkout'
 import SignIn from './routes/auth/sign-in'
 import SignUp from './routes/auth/sign-up'
 import ForgotPassword from './routes/auth/forgot-password'
+import { HelmetProvider } from 'react-helmet-async'
 
 const router = createBrowserRouter([
   {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
   },
   {
     path : "profile",
-    element : <Profile />
+    element : <User />
   },
   {
     path : "subscription",
@@ -85,6 +86,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router = {router} />
+    <HelmetProvider>
+      <RouterProvider router = {router} />
+    </HelmetProvider>
   </React.StrictMode>,
 )

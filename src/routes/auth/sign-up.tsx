@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Button from "../../components/ui/Button"
 import { Gem, Globe, Laptop2 } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, redirect } from "react-router-dom"
 
 export default function SignUp({ handleClick } : any) {
     const [form, setForm] = useState({
@@ -12,6 +12,10 @@ export default function SignUp({ handleClick } : any) {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value })
+    }
+
+    const handleSignUp = () => {
+        redirect("/") 
     }
     
     return (
@@ -64,10 +68,7 @@ export default function SignUp({ handleClick } : any) {
                 <Button 
                     type="primary" 
                     className="w-full py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-[1.02]"
-                    onClick={() => {
-                        console.log("Form submitted:", form)
-                        // Handle form submission here
-                    }}
+                    onClick={handleSignUp}
                 >
                     Create an account
                 </Button>

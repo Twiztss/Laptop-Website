@@ -10,6 +10,7 @@ import sampleProduct from "../data/product-data";
 import Navbar from "../components/shared/Navbar";
 import { ProductCardSkeleton } from "../components/ui/Skeleton";
 import { getCategoryStyle } from "../utils/style";
+import { Helmet } from "react-helmet-async";
 
 export default function Products() {
   const [isLoading, setIsLoading] = useState(true)
@@ -109,7 +110,7 @@ export default function Products() {
     const categoryStyle = getCategoryStyle(product.category)
     
     // Debug logging
-    console.log(`Product: ${product.title}, Category: "${product.category}", Style:`, categoryStyle)
+    // console.log(`Product: ${product.title}, Category: "${product.category}", Style:`, categoryStyle)
 
     return (
       <article 
@@ -162,6 +163,10 @@ export default function Products() {
 
   return (
     <>
+    <Helmet>
+      <title>Laptop Website | Products</title>
+      <meta name="description" content="Products" />
+    </Helmet>
       <Header />
       <Navbar />
       

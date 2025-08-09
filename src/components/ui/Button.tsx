@@ -9,7 +9,7 @@ type ButtonProps = {
     disabled? : boolean,
 }
 
-export default function Button({ name , className, type, onClick = () => {console.log("Test Button")}, children } : ButtonProps) {
+export default function Button({ name , className, type, onClick, children } : ButtonProps) {
 
     switch (type) {
         case "primary" :

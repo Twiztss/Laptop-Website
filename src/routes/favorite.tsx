@@ -8,6 +8,7 @@ import { Product } from "../types/Product"
 import { Heart, ShoppingCart, Trash2 } from "lucide-react"
 import { ProductCardSkeleton } from "../components/ui/Skeleton"
 import { getCategoryStyle } from "../utils/style"
+import { Helmet } from "react-helmet-async"
 
 interface FavoriteItemProps {
     product: Product
@@ -94,7 +95,12 @@ export default function Favorite() {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50">
+        <>
+        <Helmet>
+            <title>Favorite | E-Commerce</title>
+            <meta name="description" content="Favorite" />
+        </Helmet>
+        <main className="flex flex-col min-h-screen bg-gray-50">
             <Header />
             <Navbar />
             
@@ -162,6 +168,7 @@ export default function Favorite() {
             </main>
             
             <Footer />
-        </div>
+        </main>
+        </>
     )
 }

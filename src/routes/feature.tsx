@@ -5,6 +5,7 @@ import Button from "../components/ui/Button"
 import { Link } from "react-router-dom"
 import { featureData, promotionData } from "../data/feature-data"
 import { useState, useEffect } from "react"
+import { Helmet } from "react-helmet-async"
 
 type featureProps = {
   id : number,
@@ -285,7 +286,12 @@ export default function Feature() {
   }, [])
 
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <>
+    <Helmet>
+      <title>Laptop Website | Features</title>
+      <meta name="description" content="Features" />
+    </Helmet>
+    <main className="flex flex-col w-full min-h-screen">
       <Header />
       
       {/* Hero Section */}
@@ -337,6 +343,7 @@ export default function Feature() {
       <Sponsor />
 
       <FooterFull />
-    </div>
+    </main>
+    </>
   )
 }

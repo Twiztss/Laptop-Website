@@ -66,7 +66,6 @@ export default function Hero() {
             />
             <Button 
               className="absolute right-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              onClick={() => console.log("Search clicked")}
             >
               <Search size={20} />
             </Button>

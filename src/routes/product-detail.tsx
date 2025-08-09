@@ -116,7 +116,7 @@ const InterestProduct = () => {
 
   const InterestCard = (product: Product) => {
     const categoryStyle = getCategoryStyle(product.category)
-    console.log(`Product: ${product.title}, Category: "${product.category}", Style:`, categoryStyle)
+    // console.log(`Product: ${product.title}, Category: "${product.category}", Style:`, categoryStyle)
 
     return (
       <div className="group bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden" key={product.title}>

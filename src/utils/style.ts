@@ -14,7 +14,7 @@ export const getCategoryStyle = (category: string) : { bg: string, text: string,
       case "Accessories":
         return { bg: "bg-purple-100", text: "text-purple-700", border: "border-2 border-purple-200" }
       default:
-        console.warn(`Unknown category: "${normalizedCategory}" - using default styling`);
+        // console.warn(`Unknown category: "${normalizedCategory}" - using default styling`);
         return { bg: "bg-gray-100", text: "text-gray-700", border: "border-2 border-gray-200" }
     }
 }

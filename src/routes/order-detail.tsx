@@ -2,6 +2,7 @@ import { Check, Headset, MapPin, MonitorSpeaker, Timer, Truck } from "lucide-rea
 import Navbar from "../components/shared/Navbar"
 import Header from "../components/shared/Header"
 import Footer from "../components/shared/Footer"
+import { Helmet } from "react-helmet-async"
 
 type Product = {
   id: string
@@ -61,9 +62,14 @@ const currentInvoice: Invoice = {
 export default function OrderDetail() {
   return (
     <>
+    <Helmet>
+      <title>Laptop Website | Order Detail</title>
+      <meta name="description" content="Order Detail" />
+    </Helmet>
+    <main className="flex flex-col w-full h-screen justify-between">
       <Header />
       <Navbar />
-      <div className="container mx-auto max-w-5xl px-4 py-6 md:py-8">
+      <main className="container mx-auto max-w-5xl px-4 py-6 md:py-8">
         <h1 className="mb-6 text-2xl font-bold">Order Detail</h1>
 
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6">
@@ -191,8 +197,9 @@ export default function OrderDetail() {
             </div>
           </div>
         </div>
-      </div>
-    <Footer />
+      </main>
+      <Footer />
+    </main>
     </>
   )
 }

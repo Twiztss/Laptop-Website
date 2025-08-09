@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import FooterFull from "../components/shared/FooterFull";
 import Header from "../components/shared/Header";
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const data : {id: number, step: string, stepInfo: string}[] = [
   {
@@ -86,6 +87,11 @@ export default function HowToUse() {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Laptop Website | How to Use</title>
+      <meta name="description" content="How to Use" />
+    </Helmet>
     <main className="flex flex-col w-full items-center min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <Header />
       <section className="flex flex-col gap-16 mx-8 my-16 max-w-4xl w-full px-4">
@@ -113,5 +119,6 @@ export default function HowToUse() {
       </section>
       <FooterFull />
     </main>
+    </>
   )
 }

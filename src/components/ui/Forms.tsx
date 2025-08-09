@@ -72,7 +72,7 @@ export default function Form ({ onSubmit, className = "" }: ContactFormProps) {
 
     if (isValid) {
       onSubmit?.(formData)
-      console.log("Form submitted:", formData)
+      // console.log("Form submitted:", formData)
     }
   }
 

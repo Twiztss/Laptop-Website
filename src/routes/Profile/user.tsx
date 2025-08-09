@@ -6,7 +6,7 @@ import { sampleUsers } from "../../data/user-data";
 import Settings from "./settings";
 import Navbar from "../../components/shared/Navbar";
 
-export default function Profile() {
+export default function User() {
 
     const [currentPage, setCurrentPage] = useState("Account")
 

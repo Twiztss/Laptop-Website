@@ -7,6 +7,7 @@ import sampleProduct from "../data/product-data"
 import Navbar from "../components/shared/Navbar"
 import { Product } from "../types/Product"
 import Button from "../components/ui/Button"
+import { Helmet } from "react-helmet-async"
 
 interface itemProp {
     title : string,
@@ -78,8 +79,8 @@ const Total = ({item} : calcProp) => {
                     </div>
                     <hr className="w-full my-4"/>
                     <div className="flex flex-col w-full gap-4">
-                        <Button className="py-3 font-medium" type="secondary" onClick={() => console.log("Guess Checkout")}><Link to={"/checkout"} className="font-bold">Guest Checkout</Link></Button>
-                        <Button className="py-4 font-medium" type="primary" onClick={() => console.log("Member Checkout")}><Link to={"/checkout"} className="text-white font-bold">Member Checkout</Link></Button>
+                        <Button className="py-3 font-medium" type="secondary"><Link to={"/checkout"} className="font-bold">Guest Checkout</Link></Button>
+                        <Button className="py-4 font-medium" type="primary"><Link to={"/checkout"} className="text-white font-bold">Member Checkout</Link></Button>
                     </div>
                 </div>
             </div>
@@ -121,7 +122,12 @@ export default function Cart() {
     }
 
     return (
-    <body className="flex flex-col w-full h-screen justify-between">
+    <>
+    <Helmet>
+        <title>Laptop Website | Cart</title>
+        <meta name="description" content="Cart" />
+    </Helmet>
+    <main className="flex flex-col w-full h-screen justify-between">
         <Header />
         <Navbar />
         <main className="flex m-10 h-5/6 gap-10 justify-center overflow-y-scroll">
@@ -143,6 +149,7 @@ export default function Cart() {
             <Total item={cartItem.map(item => item.amount * item.price)}/>
         </main>
         <Footer />
-    </body>
+    </main>
+    </>
     )
 }

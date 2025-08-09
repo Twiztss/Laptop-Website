@@ -1,6 +1,6 @@
 import { BookOpenTextIcon, Box, CreditCard, Crown, FolderArchive, ShieldAlert, SidebarIcon, User } from "lucide-react"
-import { sampleSubCategory } from "../../data/category-data";
-import { SubCategory } from "../../types/Catogory";
+import { sampleSubCategory } from "../../data/category-data.ts";
+import { SubCategory } from "../../types/Catogory.ts";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
